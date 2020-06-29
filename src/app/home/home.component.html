@@ -1,0 +1,41 @@
+<mat-toolbar class="css-toolbar">
+    <span><img src="./assets/avatar.png" width="80px" height="90px"></span>
+    <a mat-button routerLink="" routerLinkActive="">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+    </a>
+    <a mat-button routerLink="" routerLinkActive="">
+        <mat-icon>public</mat-icon>
+        <span>About</span>
+    </a>
+    <span class="space-right"></span>
+    <a mat-button routerLink="" routerLinkActive="">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+    </a>
+</mat-toolbar>
+<div
+fxLayout="row"
+fxLayout.sm="column"
+fxLayout.xs="column"
+fxLayoutAlign.xs="start center"
+fxLayoutAlign.sm="start center" 
+fxLayoutAlign.gt-sm="center center"
+style="padding:20px;" >
+
+    <div fxFlex>
+        <h1 style="font-family: Calibri, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Emotify: Your peace platform!</h1>
+        <h2 style="padding-top: 20px; font-family: cursive;">Develop your feelings<br>
+        Harness your emotions<br>
+        Achieve inner peace!</h2>
+        <div style="padding-top: 30px;">
+            <button mat-raised-button >Signup</button>
+            <button mat-raised-button style="left:20px;">Login</button>
+        </div>
+    </div>
+    <div fxFlex style="padding:20px;">
+        <app-carousel></app-carousel>
+    </div>
+
+</div>
+

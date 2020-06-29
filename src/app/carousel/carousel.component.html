@@ -1,0 +1,40 @@
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="first slide" width="800px" height="400px">
+      </div>
+      <div class="carousel-caption">
+        <h3>Smile!</h3>
+        <p>Radiate optimism to the world</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="second slide" width="800px" height="400px">
+      </div>
+      <div class="carousel-caption">
+        <h3>Cherish</h3>
+        <p>Appreciate the little things!</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="third slide" width="800px" height="400px">
+      </div>
+      <div class="carousel-caption">
+        <h3>Realize!</h3>
+        <p>How lucky you are!</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img [src]="images[3]" alt="fourth slide" width="800px" height="400px">
+        </div>
+        <div class="carousel-caption">
+          <h3>Believe</h3>
+          <p>You can do it!</p>
+        </div>
+      </ng-template>
+  </ngb-carousel>
+  
+  
