@@ -1,0 +1,11 @@
+.foot-icon {
+    width: 60px;
+    height: 60px;
+}
+.footer {
+    background-color: #f1f1f1;
+}
+.foot-icon:hover {
+    cursor: grab;
+    opacity:0.7;
+}

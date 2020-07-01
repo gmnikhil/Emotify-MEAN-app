@@ -1,0 +1,12 @@
+<div class="s-tile">
+    <h1>What are you feeling?</h1>
+    <div class="container" [@flyInOut]>
+        <div class="row">
+            <div class ="col-xl-3 col-md-6 col-sm-12 gridtile" 
+            *ngFor="let tile of tiles" [style.background]=tile.color >
+                <h1 class="container">{{tile.emotion}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<app-emotification></app-emotification>

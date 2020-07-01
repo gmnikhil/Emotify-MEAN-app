@@ -1,0 +1,8 @@
+.css-toolbar {
+    background-color:  #1a3797;
+    /*background-color: #dfd5d5;*/
+    color: white;
+}
+.css-active {
+    background-color: burlywood;
+}

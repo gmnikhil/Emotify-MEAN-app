@@ -1,0 +1,39 @@
+div {
+    top:0;
+    left:0;
+    position: fixed;
+    background-color: #bb1f1f;
+    width: 80px;
+    height:100%;
+    align-content: center;
+}
+.css-active {
+    background-color: tomato;
+}
+a {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    transform: rotateZ(90deg);
+    position:relative;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+    
+}
+li {
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+button {
+    background-color: salmon;
+    border-radius: 25px;
+
+}
+
+
+

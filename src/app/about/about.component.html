@@ -1,0 +1,52 @@
+<app-toolbar></app-toolbar>
+
+<div style="padding:20px">
+    <h1>About:</h1>
+    <p>Emotify is a platform for users all around the globe to improve their
+    emotional state of being. Through a systamized process and by providing insights, we aim to make it 
+    easy for you adapt with your mood swings. Through this venture, we also aim to highlight the importance 
+    of mental health in leading a successful life.</p>
+</div>
+<div style="padding:20px">
+    <h1 style="padding-bottom:40px;">The team behind:</h1>
+    <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile
+            *ngFor="let tile of tiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color"
+            >
+            <div>
+                <h2>{{tile.header}}</h2>
+                <p style="text-align: right;">{{tile.desc}}</p>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+</div>
+<div style="padding:20px">
+    <h1>Vision:</h1>
+    <p>
+        <mat-icon>star</mat-icon> A community where people are not afraid of speaking up on their personal issues.<br>
+        <mat-icon>star</mat-icon> A community where people understand each other's feelings.<br>
+        <mat-icon>star</mat-icon> A community where everyone is treated without any prejudice.
+    </p>
+</div>
+<div style="padding:20px;">
+    <h1>The Community:</h1>
+    <p>
+        Achieving mental wellness is impossible without love. Emotify supports community posting and 
+        invites feedback from all its users to enhance both user experience and content. We love having
+        you here.
+    </p>
+</div>
+
+<div         
+*ngFor="let tile of tiles"
+[style.background]="tile.color">
+    <div>
+        <h2 style="padding-left: 40px;">{{tile.header}}</h2>
+        <p style="text-align: center;">{{tile.desc}}</p>
+    </div>
+</div>
+
+<app-footer></app-footer>
