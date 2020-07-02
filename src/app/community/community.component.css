@@ -1,0 +1,17 @@
+
+.css-community {
+    right:0;
+    width:25%;
+    height:100%;
+    position: fixed;
+    font-family: 'Chelsea market';
+    color: darkgreen;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color:skyblue;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    top:1px;
+    
+}

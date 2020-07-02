@@ -3,3 +3,19 @@
     margin-left: 80px;
     position: relative;
 }
+p {
+    font-family: 'kalam';
+    font-size: x-large;
+}
+mat-card {
+    box-shadow: tomato 3px 4px 5px !important;
+}
+.enclose {
+    padding: 20px; 
+    background-color: rgb(56, 42, 42);  
+}
+button:focus ,:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}

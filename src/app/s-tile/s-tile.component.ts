@@ -20,7 +20,7 @@ export interface Tile {
 export class STileComponent implements OnInit {
 
   constructor(private renderer: Renderer2) {
-    this.renderer.setStyle(document.body, 'background','white');
+    
   }
 
   ngOnInit(): void {

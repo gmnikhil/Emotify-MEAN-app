@@ -24,6 +24,8 @@ import { STileComponent } from './s-tile/s-tile.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { EmotificationComponent } from './emotification/emotification.component';
 import { ArticleComponent } from './article/article.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommunityComponent } from './community/community.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { ArticleComponent } from './article/article.component';
     STileComponent,
     HighlightDirective,
     EmotificationComponent,
-    ArticleComponent
+    ArticleComponent,
+    CommunityComponent
   ],
   imports: [
     BrowserModule,
@@ -50,12 +53,14 @@ import { ArticleComponent } from './article/article.component';
     MatCardModule,
     HttpClientModule,
     MatGridListModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
-    CarouselComponent
+    CarouselComponent,
+    ArticleComponent
   ]
 })
 export class AppModule { }

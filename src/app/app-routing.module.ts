@@ -6,10 +6,11 @@ import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 import {STileComponent} from './s-tile/s-tile.component';
 import{ArticleComponent} from './article/article.component';
+import{EmotificationComponent} from './emotification/emotification.component';
 
 const routes: Routes = [
   {
-    path:'home', component: HomeComponent
+    path:'home', component: EmotificationComponent
   },
   {
   path:'about', component: AboutComponent
@@ -18,7 +19,7 @@ const routes: Routes = [
     path:"",redirectTo: 'home', pathMatch: 'full'
   },
   {
-  path:'login', component: STileComponent
+  path:'login', component: ArticleComponent
   }
 ];
 
