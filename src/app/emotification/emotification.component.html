@@ -1,25 +1,24 @@
-<div >
-    <a mat-button routerLink="/home" routerLinkActive="css-active">
+<div [ngClass]=getDivStyle()>
+    <a mat-button routerLink="/tiles" routerLinkActive="{{getButtonStyle()}}">
         <mat-icon>home</mat-icon>
         <span>Home</span>
     </a>
-    <a mat-button routerLink="/about" routerLinkActive="css-active">
+    <a mat-button routerLink="/article" routerLinkActive="{{getButtonStyle()}}">
         <mat-icon>public</mat-icon>
-        <span>About</span>
+        <span>Article</span>
     </a>
-    <a mat-button routerLink="/login" routerLinkActive="css-active">
+    <a mat-button routerLink="/community" routerLinkActive="{{getButtonStyle()}}">
         <mat-icon>login</mat-icon>
-        <span>Login</span>
+        <span>Cmnty</span>
     </a>
     <ul class="container">
-        <li><button mat-stroked-button><mat-icon>copyright</mat-icon></button></li>
-        <li><button mat-button>E</button></li>
-        <li><button mat-button>M</button></li>
-        <li><button mat-button>O</button></li>
-        <li><button mat-button>T</button></li>
-        <li><button mat-button>I</button></li>
-        <li><button mat-button>F</button></li>
-        <li><button mat-button>Y</button></li>
+        <li><button [ngClass]=getButtonStyle() mat-stroked-button><mat-icon>copyright</mat-icon></button></li>
+        <li><button [ngClass]=getButtonStyle() mat-button>E</button></li>
+        <li><button [ngClass]=getButtonStyle() mat-button>M</button></li>
+        <li><button [ngClass]=getButtonStyle() mat-button>O</button></li>
+        <li><button [ngClass]=getButtonStyle() mat-button>T</button></li>
+        <li><button [ngClass]=getButtonStyle() mat-button>I</button></li>
+        <li><button [ngClass]=getButtonStyle() mat-button>F</button></li>
+        <li><button [ngClass]=getButtonStyle() mat-button>Y</button></li>
     </ul>
 </div>
-<app-community></app-community>

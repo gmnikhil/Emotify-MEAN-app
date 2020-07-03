@@ -1,17 +1,40 @@
 
-.css-community {
+.css-community-div {
     right:0;
     width:25%;
     height:100%;
     position: fixed;
     font-family: 'Chelsea market';
-    color: darkgreen;
+    color: whitesmoke;
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color:skyblue;
+    background-color:  rgb(56, 42, 42);
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    top:1px;
-    
+    top:0;   
+}
+.encapsulate {
+    padding: 20px; 
+    background-image: url("../../assets/grey.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    margin-left: 80px;
+    background-size: 100% 100%;
+    background-position: center center;
+    bottom:0 !important;
+    position: absolute;
+    right:0;
+    left:0;
+}
+.css-box {
+ right:30%;
+ position: absolute;  
+}
+mat-card {
+    border:1px solid;
+    border-radius: 20px 0 20px 0; 
 }

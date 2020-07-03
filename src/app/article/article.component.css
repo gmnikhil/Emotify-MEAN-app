@@ -12,7 +12,12 @@ mat-card {
 }
 .enclose {
     padding: 20px; 
-    background-color: rgb(56, 42, 42);  
+    background-image: url("../../assets/lava.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /*background-color: rgb(56, 42, 42);*/  
 }
 button:focus ,:active {
     outline: none;

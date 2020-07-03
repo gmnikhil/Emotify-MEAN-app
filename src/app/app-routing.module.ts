@@ -7,10 +7,11 @@ import {AboutComponent} from './about/about.component';
 import {STileComponent} from './s-tile/s-tile.component';
 import{ArticleComponent} from './article/article.component';
 import{EmotificationComponent} from './emotification/emotification.component';
+import {CommunityComponent} from './community/community.component';
 
 const routes: Routes = [
   {
-    path:'home', component: EmotificationComponent
+    path:'home', component: HomeComponent
   },
   {
   path:'about', component: AboutComponent
@@ -19,7 +20,16 @@ const routes: Routes = [
     path:"",redirectTo: 'home', pathMatch: 'full'
   },
   {
-  path:'login', component: ArticleComponent
+  path:'login', component: EmotificationComponent
+  },
+  {
+  path:'article', component: ArticleComponent
+  },
+  {
+    path:'tiles', component: STileComponent
+  },
+  {
+  path:'community', component: CommunityComponent
   }
 ];
 
