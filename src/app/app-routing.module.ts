@@ -8,6 +8,8 @@ import {STileComponent} from './s-tile/s-tile.component';
 import{ArticleComponent} from './article/article.component';
 import{EmotificationComponent} from './emotification/emotification.component';
 import {CommunityComponent} from './community/community.component';
+import {ProfileComponent} from './profile/profile.component';
+import {RhomeComponent} from './rhome/rhome.component';
 
 const routes: Routes = [
   {
@@ -26,10 +28,16 @@ const routes: Routes = [
   path:'article', component: ArticleComponent
   },
   {
+  path:'ehome', component: RhomeComponent
+  },
+  {
     path:'tiles', component: STileComponent
   },
   {
   path:'community', component: CommunityComponent
+  },
+  {
+  path:'profile', component: ProfileComponent
   }
 ];
 

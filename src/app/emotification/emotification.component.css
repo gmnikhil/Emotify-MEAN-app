@@ -6,9 +6,10 @@ div {
     height:100%;
     text-align: center;
     padding: 0;
+    display: inline-block;
 }
 .homed {
-    background-color: wheat;
+    background-color: #f1f1f1;
     color: black;
 }
 .articled {
@@ -23,16 +24,15 @@ div {
     color: white;
 }
 .homeb {
-    background-color: salmon;
+    background-color: rgb(240, 154, 213);
 }
 .communityb {
     background-color: sandybrown;
 }
 a {
-    margin-top: 30px;
-    margin-bottom: 30px;
     transform: rotateZ(90deg);
     position:relative;
+    display: inline-block;
 }
 a:hover {
     color: whitesmoke;
@@ -41,17 +41,26 @@ ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
-    bottom: 0;
     position: absolute;
-    
+}
+.css-bot {
+    bottom: 0;
 }
 li {
     text-align: center;
     padding-top: 3px;
     padding-bottom: 3px;
 }
+.css-top {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 button {
     border-radius: 25px;
+}
+.top-ul {
+    top:0;
 }
 button:active, button:focus {
     border-style: none !important;
@@ -60,5 +69,45 @@ button:active, button:focus {
     box-shadow: none !important;
 }
 
+@media only screen and ( max-height: 640px ) {
+
+    .css-bot {
+        width:0;
+        height: 0;
+        display: none;
+    }
+    div {
+        display: flex;
+        align-items: center;
+    }
+    .top-ul {
+        top: auto;
+        width: 80px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        line-height: 100px;
+    }
+}
+
+@media only screen and ( max-height: 500px ) {
+    .top-ul {
+        line-height: 60px;
+    }
+}
+@media only screen and ( max-height: 400px ) {
+    .top-ul {
+        line-height: 40px;
+    }
+}
+@media only screen and ( max-height: 300px ) {
+    .top-ul {
+        line-height: 20px;
+    }
+}
+@media only screen and ( max-height: 200px ) {
+    .top-ul {
+        line-height: 10px;
+    }
+}
 
 

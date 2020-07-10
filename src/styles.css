@@ -14,3 +14,11 @@
     max-width: 350px;
     min-height: 450px;
 }
+body {
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-position: center center;
+}

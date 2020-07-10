@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <h4 class="modal-title">Signup</h4>
+</div>
+<form class="container" novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit()" #sform="ngForm">
+    <div class="modal-body">
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="name" placeholder="Name" type="text" required>
+                <mat-error *ngIf=" name.invalid && (name.dirty || name.touched)">
+                    <span *ngIf="name.errors.required">Name is required!</span>
+                </mat-error>         
+            </mat-form-field> 
+            <br>
+        </p>
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="username" placeholder="Username" type="text" required>
+                <mat-error *ngIf=" username.invalid && (username.dirty || username.touched)">
+                    <span *ngIf="username.errors.required">Username is required!</span>
+                    <span *ngIf="username.errors.minlength">Username should be atleast 4 characters</span>
+                    <span *ngIf="username.errors.maxlength">Username should not be more than 25 characters</span>
+                    <span *ngIf="!username.errors.minlength"><span *ngIf="!username.errors.maxlength"><span *ngIf="username.errors.pattern">Allowed: letters, underscores, digits</span></span></span>
+                </mat-error>       
+            </mat-form-field> 
+            <br>
+        </p>
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="email" placeholder="Email" type="email" required>
+                <mat-error *ngIf=" email.invalid && (email.dirty || email.touched)">
+                    <span *ngIf="email.errors.required">Email is required!</span>
+                    <span *ngIf="email.errors.email">Invalid email</span>
+                </mat-error>           
+            </mat-form-field> 
+            <br>
+        </p>
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="password" placeholder="Password" type="password" required>
+                <mat-error *ngIf=" password.invalid && (password.dirty || password.touched)">
+                    <span *ngIf="password.errors.required">Password is required!</span>
+                    <span *ngIf="password.errors.minlength">Password should not be less than 6 characters</span>
+                </mat-error>     
+            </mat-form-field> 
+            <br>
+        </p>
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="confirmpassword" placeholder="Confirm Password" type="password" required>
+                <mat-error *ngIf=" confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)">
+                    <span *ngIf="confirmpassword.errors.required">Required!</span>
+                 <!--  <span *ngIf="signupForm.errors?.wrong && (signupForm.dirty || signupForm.touched)">Passwords dont match</span> -->
+                </mat-error>     
+            </mat-form-field> 
+            <br>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button mat-button (click)="activeModal.close('Close click')">Cancel</button>
+        <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="signupForm.invalid" >Sign in</button> <!--user cannot submit if form entry is invalid-->
+    </div>
+</form>

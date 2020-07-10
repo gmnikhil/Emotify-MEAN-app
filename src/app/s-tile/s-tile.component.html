@@ -2,9 +2,9 @@
 <div>
     <h1>What are you feeling?</h1>
     <div class="container" [@flyInOut]>
-        <div class="row">
-            <div class ="col-xl-3 col-md-6 col-sm-12 gridtile" 
-            *ngFor="let tile of tiles" [style.background]=tile.color >
+        <div class="row container">
+            <div class ="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 grid-tile" 
+            *ngFor="let tile of tiles" [style.background]=tile.color (click)="updateEmotion(tile.emotion)" routerLink="/article">
                 <h1 class="container">{{tile.emotion}}</h1>
             </div>
         </div>

@@ -26,7 +26,27 @@ import { EmotificationComponent } from './emotification/emotification.component'
 import { ArticleComponent } from './article/article.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommunityComponent } from './community/community.component';
-
+import { LoginComponent } from './login/login.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FormsModule} from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
+import { MatListModule } from '@angular/material/list';
+import {ReactiveFormsModule} from '@angular/forms';
+import { ArticlesService } from './services/articles.service';
+import { ProcesshttpmsgService } from './services/processhttpmsg.service';
+import {UserService} from './services/user.service';
+import { Emotion } from './shared/emotion';
+import {CommunityService} from './services/community.service';
+import { ProfileComponent } from './profile/profile.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { CtyPostComponent } from './cty-post/cty-post.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http'; 
+import { AuthService } from './services/auth.service';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { UnauthorizedInterceptor } from './services/auth.interceptor';
+import { RhomeComponent } from './rhome/rhome.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +60,13 @@ import { CommunityComponent } from './community/community.component';
     HighlightDirective,
     EmotificationComponent,
     ArticleComponent,
-    CommunityComponent
+    CommunityComponent,
+    LoginComponent,
+    SignupComponent,
+    ProfileComponent,
+    UserEditComponent,
+    CtyPostComponent,
+    RhomeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,13 +80,46 @@ import { CommunityComponent } from './community/community.component';
     HttpClientModule,
     MatGridListModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatInputModule,
+    FormsModule,
+    MatListModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ArticlesService,
+    ProcesshttpmsgService,
+    Emotion,
+    UserService,
+    CommunityService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   exports: [
     CarouselComponent,
-    ArticleComponent
+    ArticleComponent,
+    LoginComponent,
+    SignupComponent,
+    CtyPostComponent,
+    UserEditComponent
+  ],
+  entryComponents: [
+    LoginComponent,
+    SignupComponent,
+    CtyPostComponent,
+    UserEditComponent
   ]
 })
 export class AppModule { }

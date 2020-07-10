@@ -1,4 +1,4 @@
-.gridtile {
+.grid-tile {
     min-width:200px;
     min-height: 200px;
     border-radius: 30px;
@@ -12,7 +12,7 @@ h1 {
     text-align: center;
     color: snow;
 }
-.gridtile:hover {
+.grid-tile:hover {
     cursor: grab;
     transform: scale(1.2) rotateY(180deg);
     transition-duration: 1s ;
@@ -21,13 +21,13 @@ h1 {
 .s-tile {
     margin-left: 80px;
     height: 100% !important;
-    background: url('../../assets/bg-stile.jpeg');
-    background-size: 100% 100%;
-    background-position: center center;
     bottom:0 !important;
-    position: absolute;
+    position: relative;
     right:0;
     left:0;
-
-    
 }
+.col-sm-6 {
+    padding: 5px;
+}
+
+

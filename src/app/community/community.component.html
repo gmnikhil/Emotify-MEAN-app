@@ -1,15 +1,28 @@
 <div class="encapsulate">
    <div class="css-community-div">
-      <div class="col-12" style="text-align:center; font-size: xx-large;">COMMUNITY</div>
+      <div class="col-12 css-col">
+         <ul class="css-list-text">
+            <li>C</li>
+            <li>O</li>
+            <li>M</li>
+            <li>M</li>
+            <li>U</li>
+            <li>N</li>
+            <li>I</li>
+            <li>T</li>
+            <li>Y</li>
+         </ul>
+      </div>
    </div>
-   <div class="col-8 container css-box">
+   <div class="col-8 container css-box" *ngFor="let post of posts">
       <mat-card>
       <mat-card-header>
-         <mat-card-title>Sample Title</mat-card-title>
-         <img mat-card-avatar src="../../assets/avatar.png">
-         <mat-card-subtitle>Writer Name</mat-card-subtitle>
+         <mat-card-title>{{post.userid}}</mat-card-title>
+         <img mat-card-avatar *ngIf="this.loc===false" src="">
+         <mat-card-subtitle>{{post.category}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
+         <p>{{post.content}}</p>
          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur repudiandae odit architecto in unde nihil laboriosam autem? Repellendus minima illo maiores consequuntur aperiam fuga, a alias quibusdam, ipsa, sit odio?</p>
          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, veniam. Soluta molestias, voluptatum sapiente, nobis saepe rem beatae excepturi autem obcaecati laborum dicta itaque laboriosam! Voluptate suscipit vero excepturi labore.</p>
       </mat-card-content>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Emotion } from '../shared/emotion';
+import { ArticlesService } from '../services/articles.service';
+import { Article } from '../shared/article';
 
 @Component({
   selector: 'app-article',
@@ -7,14 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ArticleComponent implements OnInit {
-
   counter: number;
+  errMess: string;
+  articles: Article[];
 
-  constructor() {
+  constructor(private emotion: Emotion, private articlesService: ArticlesService, private renderer: Renderer2) {
+    console.log(this.emotion.emo);
     this.counter=1;
    }
 
   ngOnInit(): void {
+    this.renderer.setStyle(document.body,'background-image','url(../../assets/lava.jpg)');
+    this.articlesService.getCategorizedArticles(this.emotion.emo)
+    .subscribe((articles)=>this.articles=articles,
+    errmess=>this.errMess=<any>errmess,()=>{console.log(this.articles)});
   }
   forward() {
     this.counter = this.counter + 1;
@@ -41,5 +50,4 @@ export class ArticleComponent implements OnInit {
       }
   }, 16);
   }
- 
 }

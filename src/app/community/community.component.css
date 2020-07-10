@@ -1,7 +1,7 @@
 
 .css-community-div {
     right:0;
-    width:25%;
+    width:300px;
     height:100%;
     position: fixed;
     font-family: 'Chelsea market';
@@ -15,26 +15,71 @@
     top:0;   
 }
 .encapsulate {
-    padding: 20px; 
-    background-image: url("../../assets/grey.jpg");
-    background-position-x: center;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    bottom:0 !important;
     height: 100%;
     margin-left: 80px;
-    background-size: 100% 100%;
-    background-position: center center;
-    bottom:0 !important;
-    position: absolute;
+    position: relative;
     right:0;
     left:0;
 }
 .css-box {
- right:30%;
- position: absolute;  
+ right:27%;  
 }
 mat-card {
     border:1px solid;
     border-radius: 20px 0 20px 0; 
+    left: 20%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    position: relative;
 }
+p {
+    font-size: large;
+    font-family: 'pt sans';
+}
+.css-list-text {
+    list-style-type: none;
+    padding: 0;
+    display: inline;
+    position: relative;
+}
+li {
+    display: inline-block;
+    padding: 0;
+    position: relative;
+}
+.css-col {
+    text-align: center; 
+    font-size: xx-large;
+}
+@media only screen and (max-width: 750px) {
+    li {
+        display: list-item;
+    }
+    .css-community-div {
+        width:80px;
+        text-align: center;
+    }
+    
+}
+@media only screen and (max-height: 550px) {
+    .css-col {
+        font-size: x-large;
+    }
+}
+@media only screen and (max-height: 415px) {
+    .css-col {
+        font-size: larger;
+    }
+}
+@media only screen and (max-height: 345px) {
+    .css-col {
+        font-size: large;
+    }
+}
+@media only screen and (max-height: 295px) {
+    .css-community-div {
+        display:none; 
+    }
+}
+ 

@@ -1,0 +1,27 @@
+<div class="css-post">
+    <div class="modal-header">
+      <h4 class="css-post-title">New Post</h4>
+    </div>
+    <br>
+    <span mat-line>Choose Emotion:</span>
+    <ul>
+      <li *ngFor="let cat of cats"><button mat-raised-button class="cat-icon" [ngStyle]="getStyle(cat.bg, cat.color)" (click)="catClick(cat.emotion)">{{cat.letter}}</button></li>
+     </ul>
+    <form novalidate [formGroup]="articleForm" #pForm="ngForm" (ngSubmit)="onSubmit()">   
+      <div class="css-post-body">
+        <span mat-line>Article Title:</span>
+           <p>
+             <input style="margin-bottom: 10px;" formControlName="title" type="text" class="css-input" placeholder="max 25 characters"></p>
+           
+             
+           
+             <span mat-line>Article content:</span>
+           <p>
+             <textarea formControlName="content" placeholder="max 100 characters" rows="5" class="css-input"></textarea></p>
+      </div>
+      <div class="modal-footer">
+        <button mat-button (click)="activeModal.close('Close click')">Cancel</button>
+        <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="articleForm.invalid || bool===false">Post</button>
+      </div>
+    </form>  
+  </div>

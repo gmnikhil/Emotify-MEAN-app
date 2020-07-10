@@ -17,8 +17,8 @@ border-radius:20px" >
         Harness your emotions<br>
         Achieve inner peace!</h2>
         <div style="padding-top: 30px;">
-            <button mat-raised-button >Signup</button>
-            <button mat-raised-button style="left:20px;">Login</button>
+            <button mat-raised-button (click)="openSignup()">Signup</button>
+            <button mat-raised-button (click)="openLogin()" style="left:20px;">Login</button>
         </div>
     </div>
     <div fxFlex style="padding:20px;">
