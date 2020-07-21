@@ -3,4 +3,5 @@ export class Article {
     author: string;
     category: string;
     content: string;
+    title: string;
 }

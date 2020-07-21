@@ -1,42 +1,92 @@
-.myart {
-    height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+.enclose {
     margin-left: 80px;
+    padding: 20px;
+    position: absolute;
+}
+mat-card {
+    border:1px solid;
+    border-radius: 20px 0 20px 0; 
+    margin-left:20px;
+    margin-right: 20px;
+    
+    background-color: indigo;
+    color: white;
+    margin-bottom: 15px;
+    margin-top: 15px;
     position: relative;
 }
 p {
-    font-family: 'kalam';
     font-size: x-large;
+    font-family:'Shadows Into Light', cursive;
+    letter-spacing: 4px;
+    font-weight: bold;
 }
-mat-card {
-    box-shadow: tomato 3px 4px 5px !important;
-    margin-top: 15px;
-    margin-bottom: 15px;
+.css-box {
+    margin-top :125px;
+    margin-right: 80px;
 }
-.enclose {
-    padding: 20px; 
-    /*background-color: rgb(56, 42, 42);*/  
-}
-button:focus ,:active {
-    outline: none;
-    box-shadow: none;
-    border: none;
-}
-.nothing {
-    padding: 20px; 
-    background-image: url("../../assets/lava.jpg");
-    background-position-x: center;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 100%;
-    margin-left: 80px;
-    background-size: 100% 100%;
-    background-position: center center;
-    bottom:0 !important;
+.emotify {
+    top:0;
+    padding-top:20px;
+    padding-left: 30px;
+    padding-bottom: 20px;
+    margin-left: -20px;
     position: fixed;
-    right:0;
-    left:0;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    background-color: rgb(255, 90, 175);
+    color: white;
+    z-index: 1;
+}
+.css-h1 {
+    font-size: xx-large;
+    font-family: 'chelsea market';
+}
+.css-h3 {
+    font-size: larger;
+}
+.username {
+    right: 90px;
+    top: 35px;
+    position: absolute;
+    font-family: 'sarabun';
+}
+@media only screen and (max-width: 960px) {
+    mat-card {
+        margin-right:0 !important;
+        margin-left: 0 !important;
+    }
+    .css-box {
+       padding:0px !important;
+       margin-right: 5px;
+   }
+   mat-card-content {
+       padding-left: 0px !important;
+       padding-right: 0px !important;
+   }
+ 
+}
+@media only screen and (max-width: 720px) {
+    .css-h3 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 660px) {
+    .enclose {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .emotify {
+        margin-left: -5px;
+    }
+}
+@media only screen and (max-width :550px) {
+    .enclose {
+        margin-left: 60px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .username {
+        top:auto;
+        bottom:1px;
+    }
 }

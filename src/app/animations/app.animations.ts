@@ -61,3 +61,72 @@ export function expand() {
 export function revolve() {
     return trigger('revolve', [state('hover',style({transform: 'transform: rotateZ(360)'})),transition('*=>*',animate('0.5s'))])
 }
+export function rhome() {
+    return trigger('rhome',[
+        state('*',
+        style({opacity:1,transform:'translateX(0)'})),
+        transition(':enter',[style({transform:'translateX(100%)',opacity:0}),
+            animate('400ms ease-in', style({
+                opacity:1,
+                transform:'translateX(0)'
+            }))
+        ]),
+    transition(':leave',[style({opacity:0}),
+    animate('300ms ease-out',style({opacity:1, transform: 'translateX(-100%)'}))
+        ])
+    ]);
+}
+export function community() {
+    return trigger('community',[
+        state('*',
+        style({opacity:1,transform:'translateY(0)'})),
+        transition(':enter',[style({transform:'translateY(-100%)',opacity:0}),
+            animate('800ms ease-in', style({
+                opacity:1,
+                transform:'translateY(0)'
+            }))
+        ])
+    ]);
+}
+export function profile() {
+    return trigger('profile',[
+        state('*',
+        style({opacity:1,transform:'translateY(0)'})),
+        transition(':enter',[style({transform:'translateY(-200%)',opacity:0}),
+            animate('200ms ease-in', style({
+                opacity:1,
+                transform:'translateY(0)'
+            }))
+        ])
+    ]);
+}
+export function proPosts() {
+    return trigger('proposts',[
+        state('*',
+        style({opacity:1,transform:'translateX(0)'})),
+        transition(':enter',[style({transform:'translateY(200%)',opacity:0}),
+            animate('400ms ease-in', style({
+                opacity:1,
+                transform:'translateY(0)'
+            }))
+        ])
+    ]);
+}
+export function proLikes() {
+    return trigger('prolikes',[
+        state('*',
+        style({opacity:1,transform:'translateX(0)'})),
+        transition(':enter',[style({transform:'translateX(200%)',opacity:0}),
+            animate('400ms ease-in', style({
+                opacity:1,
+                transform:'translateX(0)'
+            }))
+        ]),
+        transition(':leave',[style({opacity:0}),
+            animate('400ms ease-out',style({
+                opacity:1,
+                transform: 'translateX(200%)'
+            }))
+        ])
+    ]);
+}

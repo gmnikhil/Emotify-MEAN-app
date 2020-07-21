@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {FormBuilder,FormGroup,Validators, FormControl} from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Article } from '../shared/article';
-import { Cat } from '../cty-post/cty-post.component';
-import { ArticlesService } from '../services/articles.service';
+import { UserService } from '../services/user.service';
 import { Emotion } from '../shared/emotion';
+import { User } from '../shared/user';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
+import {HttpClient, HttpHeaders } from'@angular/common/http';
+import {URL} from '../shared/url';
 
 @Component({
   selector: 'app-user-edit',
@@ -12,74 +15,107 @@ import { Emotion } from '../shared/emotion';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  emotion: Emotion;
   errMess: string;
-  bool: boolean = false;
-  article: Article;
-  articleForm: FormGroup;
+  user: User;
+  bool : boolean = false;
+  userForm: FormGroup;
   passForm: FormGroup; 
-  cats: Cat[] =[
-    {letter:'#H',color:'orange', emotion:'Happy', bg:false},
-    {letter:'#S',color:'grey', emotion:'Sad', bg:false},
-    {letter:'#N',color:'crimson', emotion: 'Nervous', bg:false},
-    {letter:'#L',color:'lightblue', emotion: 'Love', bg:false},
-    {letter:'#A',color:'black', emotion: 'Alone', bg:false},
-    {letter:'#F',color:'violet', emotion: 'Frightened', bg:false},
-    {letter:'#B',color:'gold', emotion: 'Broken', bg:false},
-    {letter:'#I',color:'green', emotion: 'Integrity', bg:false}
-  ]
-  @ViewChild("eform") editFormDirective;
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private articleService: ArticlesService) { 
-    this.createForm();
+  username: FormControl;
+  name: FormControl;
+  email: FormControl;
+  subscription: Subscription;
+
+  @ViewChild("uform") editFormDirective;
+  @ViewChild('userPhoto') userPhoto: ElementRef;
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, 
+    private authService: AuthService, private userService: UserService, private emotion: Emotion,
+    private http: HttpClient) { 
+    
   }
 
   ngOnInit(): void {
+    this.authService.loadUserCredentials();
+      this.subscription = this.authService.getUserId()
+        .subscribe(id => { 
+          this.userService.getUserWithId(id).subscribe(user=>{
+            this.user=user[0];
+            this.bool=true;
+            this.createFormControls();
+            this.createForm();
+          },err=>this.errMess="Oops... Something went wrong!")
+        },err=>this.errMess="Oops... Something went wrong!");
+  }
+  createFormControls() {
+    this.username = new FormControl(this.user.username,[Validators.required,Validators.minLength(4),Validators.maxLength(25),Validators.pattern("[a-zA-Z0-9_]{4,25}")]);
+    this.email = new FormControl(this.user.email,[Validators.required,Validators.email]);
+    this.name = new FormControl(this.user.name,[Validators.required]);
   }
   createForm() {
     this.passForm=this.fb.group({
-    id: [""],
-    author: [""],
-    content: [""],
-    category: [""]
-    })
-    this.articleForm=this.fb.group({
-      content: ["",[Validators.required,Validators.maxLength(100)]],
-      category: [""]
+    _id: [""],
+    username: [""],
+    name: [""],
+    email: [""],
+    userImage: [""]
+    });
+    this.userForm=this.fb.group({
+      username: this.username,
+      name: this.name,
+      email: this.email
     });
   }
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const type = file.type.split('/')[1];
 
-  catClick(emo :string) {
-    this.passForm.value.category=emo;
-    this.articleForm.value.category=emo;
-    for(let i=0; i<this.cats.length; i++)
-      {
-        if(this.cats[i].emotion!=emo)
-          this.cats[i].bg=false;
-        else
-          this.cats[i].bg=true;
-      } 
-    this.bool=true;
-  }
-  getStyle(bool: boolean, color: string) {
-    if(bool===true) {
-      return {'background-color': ''+color,'color':'whitesmoke'};
+      if(type==="jpeg"||type==="jpg"||type==="png") {
+        this.passForm.get('userImage').setValue(file);
+        document.getElementById("file").className="file-input max-width";
+      }
+      else {
+        document.getElementById("file").className="file-input min-width";
+        this.userPhoto.nativeElement.value = null;
+        alert("Image format not supported");
+      
+      }
     }
   }
+    /*
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload=()=>{
+        this.passForm.patchValue({userImage: reader.result});
+        console.log(reader.result);   
+      }
+    } */
   onSubmit() {
-    this.passForm.value.author = this.emotion.userId;
-    this.passForm.value.content = this.articleForm.value.content;
-    this.articleService.getId(this.passForm.value.category).subscribe(id=>{console.log(id);this.passForm.value.id=id},
-    err=>this.errMess=err);
-    if(this.errMess)
-      return console.log('ERROR');
-    console.log(this.passForm);
-    this.articleService.postArticle(this.passForm.value).subscribe(article=>this.article=article);
-    console.log(this.article);
-    //this.postFormDirective.resetForm();    
-    this.articleForm.reset({
-      content:"",
-      category:""
-    });
-    //this.activeModal.close('Close click');
+    this.passForm.value._id = this.emotion.userId;
+    this.passForm.value.username = this.userForm.value.username;
+    this.passForm.value.name = this.userForm.value.name;
+    this.passForm.value.email = this.userForm.value.email;
+
+    const data = new FormData();
+    if(this.passForm.value.userImage!="")
+    data.append('userImage',this.passForm.get('userImage').value,this.passForm.get('userImage').value.name);
+    data.append('name',this.passForm.value.name);
+    data.append('username',this.passForm.value.username);
+    data.append('email',this.passForm.value.email);
+    data.append('_id',this.passForm.value._id);
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept':'application/json',
+        'enctype':'multipart/form-data'
+      })
+    };
+    this.http.put(URL+'api/users',data,httpOptions).subscribe(
+      res=>{
+      this.activeModal.close('Close click');
+      location.reload();
+      },err=>alert("Oops! Something went wrong!"));
+    
   }
 }

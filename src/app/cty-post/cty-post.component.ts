@@ -20,8 +20,11 @@ export interface Cat {
 export class CtyPostComponent implements OnInit {
   bool: boolean = false;
   post: Post;
+  errMess: string;
   postForm: FormGroup;
-  passForm: FormGroup; 
+  passForm: FormGroup;
+  title: FormControl;
+  content: FormControl;
   cats: Cat[] =[
     {letter:'#H',color:'orange', emotion:'Happy', bg:false},
     {letter:'#S',color:'grey', emotion:'Sad', bg:false},
@@ -35,23 +38,28 @@ export class CtyPostComponent implements OnInit {
 
   @ViewChild("pform") postFormDirective;
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private emotion: Emotion, private communityService: CommunityService) {
+    this.createFormControls();
     this.createForm();
    }
 
   ngOnInit(): void {
   }
+  createFormControls() {
+    this.title = new FormControl("",[Validators.required,Validators.maxLength(40)]);
+    this.content = new FormControl("",[Validators.required,Validators.maxLength(500)]);
+  }
   createForm() {
     this.passForm=this.fb.group({
-    time: [""],
+    date: [""],
     id: [""],
     title: [""],
     content: [""],
     category: [""],
-    userid: [""]
+    userId: [""]
     })
     this.postForm=this.fb.group({
-      title: ["",[Validators.required,Validators.maxLength(25)]],
-      content: ["",[Validators.required,Validators.maxLength(100)]],
+      title: this.title,
+      content: this.content,
       category: [""]
     });
   }
@@ -74,20 +82,22 @@ export class CtyPostComponent implements OnInit {
     }
   }
   onSubmit() {
-    this.passForm.value.time = new Date().toISOString();
-    this.passForm.value.userid = this.emotion.userId;
+    this.passForm.value.date = new Date().toISOString();
+    this.passForm.value.userId = this.emotion.userId;
     this.passForm.value.content = this.postForm.value.content;
     this.passForm.value.title = this.postForm.value.title;
-    console.log(this.passForm);
-    this.communityService.communityPost(this.passForm.value).subscribe(post=>this.post=post);
-    console.log(this.post);
+    this.communityService.communityPost(this.passForm.value).subscribe(post=> {
+      this.post=post;
+      this.postForm.reset({
+        title:"",
+        content:"",
+        category:""
+      });
+      this.activeModal.close('Close click');
+      location.reload();
+    },err=>this.errMess="Oops... Something went wrong!");
     //this.postFormDirective.resetForm();    
-    this.postForm.reset({
-      title:"",
-      content:"",
-      category:""
-    });
-    //this.activeModal.close('Close click');
+    
   }
  
   

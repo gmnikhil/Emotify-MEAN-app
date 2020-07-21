@@ -15,12 +15,12 @@ export class ArticlesService {
     private processHTTPMsgService: ProcesshttpmsgService) { }
 
     getArticles(): Observable<Article[]> {
-      return this.http.get<Article[]>(URL + 'articles')
+      return this.http.get<Article[]>(URL + 'api/articles')
       .pipe(catchError(this.processHTTPMsgService.handleError));
     }
 
     getCategorizedArticles(cat: string): Observable<Article[]> {
-      return this.http.get<Article[]>(URL +'articles?category='+ cat)
+      return this.http.get<Article[]>(URL +'api/articles?category='+ cat)
       .pipe(catchError(this.processHTTPMsgService.handleError));
     }
     postArticle(article: Article): Observable<Article> {
@@ -29,13 +29,13 @@ export class ArticlesService {
           'Content-Type':'application/json'
         })
       };
-    return this.http.post<Article>(URL + 'articles',
+    return this.http.post<Article>(URL + 'api/articles',
     article,
     httpOptions)
     .pipe(catchError(this.processHTTPMsgService.handleError));
     }
     getId(category :string): Observable<number> {
-      return this.http.get<number>(URL+'articles/'+category).pipe(catchError(this.processHTTPMsgService.handleError));
+      return this.http.get<number>(URL+'api/articles/'+category).pipe(catchError(this.processHTTPMsgService.handleError));
     }
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit,Renderer2 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignupComponent } from '../signup/signup.component';
 import { LoginComponent } from '../login/login.component';
+import { URL } from '../shared/url';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,10 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  url: string;
   constructor(private renderer: Renderer2, private modalService: NgbModal) {
     this.renderer.setStyle(document.body,'background','white');
+    this.url=URL;
    }
 
   ngOnInit(): void {

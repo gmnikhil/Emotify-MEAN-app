@@ -12,7 +12,6 @@ export class AuthInterceptor implements HttpInterceptor {
     const authService = this.inj.get(AuthService);
     // Get the auth header from the service.
     const authToken = authService.getToken();
-    console.log("Interceptor: " + authToken);
     // Clone the request to add the new header.
     const authReq = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + authToken)});
 
@@ -36,7 +35,6 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
       }, (err: any) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401 && authToken) {
-            console.log('Unauthorized Interceptor: ', err);
             authService.checkJWTtoken();
           }
         }

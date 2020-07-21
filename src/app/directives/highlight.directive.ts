@@ -1,3 +1,4 @@
+/*
 import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 
 @Directive({
@@ -13,4 +14,14 @@ export class HighlightDirective {
     @HostListener('mouseleave') onmouseleave() {
       this.renderer.removeClass(this.el.nativeElement,'highlight');
     }
+}
+*/
+import { Directive } from '@angular/core';
+
+@Directive({
+  selector: '[var]',
+  exportAs: 'var'
+})
+export class VarDirective {
+  [key: string]: any;
 }

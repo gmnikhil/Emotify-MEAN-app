@@ -13,29 +13,31 @@ export class UserService {
 
   constructor(private processHttpMsgService: ProcesshttpmsgService, private http: HttpClient) { }
   getUserWithUsername(username :string): Observable<User> {
-    return this.http.get<User>(URL+'users?username='+username).pipe(catchError(this.processHttpMsgService.handleError));
+    return this.http.get<User>(URL+'api/users?username='+username).pipe(catchError(this.processHttpMsgService.handleError));
   }
   getUserWithId(id :string) : Observable<User> {
-    return this.http.get<User>(URL+'users?_id='+id).pipe(catchError(this.processHttpMsgService.handleError));
+    return this.http.get<User>(URL+'api/users?_id='+id).pipe(catchError(this.processHttpMsgService.handleError));
   }
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(URL+'users').pipe(catchError(this.processHttpMsgService.handleError));
+    return this.http.get<User[]>(URL+'api/users').pipe(catchError(this.processHttpMsgService.handleError));
   }
-  postUser(user:User): Observable<AuthResponse> {
+  postUser(user: any): Observable<AuthResponse> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':'application/json'
+        'Accept':'application/json',
+        'enctype':'multipart/form-data'
       })
     };
-    return this.http.post<AuthResponse>(URL+'users',user,httpOptions).pipe(catchError(this.processHttpMsgService.handleError));
+    return this.http.post<AuthResponse>(URL+'api/users',user,httpOptions).pipe(catchError(this.processHttpMsgService.handleError));
   }
-  editUser(user :User): Observable<User> {
+  editUser(user :any): Observable<AuthResponse> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':'application/json'
+        'Accept':'application/json',
+        'enctype':'multipart/form-data'
       })
     };
-    return this.http.put<User>(URL+'users',user,httpOptions).pipe(catchError(this.processHttpMsgService.handleError));
+    return this.http.put<AuthResponse>(URL+'api/users',user,httpOptions).pipe(catchError(this.processHttpMsgService.handleError));
   }
  
 }

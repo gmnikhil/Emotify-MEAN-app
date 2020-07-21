@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 import {STileComponent} from './s-tile/s-tile.component';
-import{ArticleComponent} from './article/article.component';
-import{EmotificationComponent} from './emotification/emotification.component';
+
 import {CommunityComponent} from './community/community.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RhomeComponent} from './rhome/rhome.component';
+import { AuthguardService} from './services/authguard.service';
 
 const routes: Routes = [
   {
@@ -22,22 +22,16 @@ const routes: Routes = [
     path:"",redirectTo: 'home', pathMatch: 'full'
   },
   {
-  path:'login', component: EmotificationComponent
+  path:'ehome', component: RhomeComponent  , canActivate: [AuthguardService]
   },
   {
-  path:'article', component: ArticleComponent
+    path:'tiles', component: STileComponent  , canActivate: [AuthguardService]
   },
   {
-  path:'ehome', component: RhomeComponent
+  path:'community', component: CommunityComponent  , canActivate: [AuthguardService]
   },
   {
-    path:'tiles', component: STileComponent
-  },
-  {
-  path:'community', component: CommunityComponent
-  },
-  {
-  path:'profile', component: ProfileComponent
+  path:'profile', component: ProfileComponent   , canActivate: [AuthguardService]
   }
 ];
 

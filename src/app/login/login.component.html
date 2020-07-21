@@ -7,15 +7,19 @@
 <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">   <!-- novalidate shifts validation responsibilty from browser to angular -->
   <mat-error *ngIf="errMess" style="text-align: center; line-height: 60px;">{{errMess}}</mat-error>
   <div class="modal-body">
-       
-      <mat-form-field>
-        <input matInput placeholder="Username" #username1="ngModel" type="text" [(ngModel)]="user.username" name="username" required>
-        <mat-error *ngIf="username1.errors?.required">Username is required</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Password" #password="ngModel" type="password" [(ngModel)]="user.password" name="password" required>
-        <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
-      </mat-form-field><br><br>
+      <p>
+        <mat-form-field class="col-8">
+          <input matInput placeholder="Username" #username1="ngModel" type="text" [(ngModel)]="user.username" name="username" required>
+          <mat-error *ngIf="username1.errors?.required">Username is required</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field  class="col-8">
+          <input matInput placeholder="Password" #password="ngModel" type="password" [(ngModel)]="user.password" name="password" required>
+          <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+        </mat-form-field>
+      </p>
+      <br>
   </div>
   <div class="modal-footer">
     <button mat-button (click)="activeModal.close('Close click')">Cancel</button>

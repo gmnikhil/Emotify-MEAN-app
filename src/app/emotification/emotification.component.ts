@@ -30,27 +30,13 @@ export class EmotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.loadUserCredentials();
-    this.subscription=this.authService.getUserId().subscribe(_id=>{console.log(_id);this.emotion.userId=_id});
+    this.subscription=this.authService.getUserId().subscribe(_id=>{this.emotion.userId=_id});
   }
 
 getDivStyle() {
-  if(this.router.url==='/home')
-    return 'homed';
-  if(this.router.url==='/profile')
-    return 'homed';
-  else if(this.router.url==='/article')
-    return 'articled';
-  else if(this.router.url==='/community')
-    return 'communityd';
+  return 'homed';
   }
   getButtonStyle() {
-  if(this.router.url==='/home')
     return 'homeb';
-  if(this.router.url==='/profile')
-    return 'homeb';
-  else if(this.router.url==='/article')
-    return 'articleb';
-  else if(this.router.url==='/community')
-    return 'communityb';
   }
 }

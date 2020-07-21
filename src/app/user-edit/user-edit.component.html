@@ -1,27 +1,53 @@
-<div class="css-post">
+<div class="css-edit">
     <div class="modal-header">
-      <h4 class="css-post-title">New Post</h4>
+      <h4 class="css-edit-title">User Edit</h4>
     </div>
-    <br>
-    <span mat-line>Choose Emotion:</span>
-    <ul>
-      <li *ngFor="let cat of cats"><button mat-raised-button class="cat-icon" [ngStyle]="getStyle(cat.bg, cat.color)" (click)="catClick(cat.emotion)">{{cat.letter}}</button></li>
-     </ul>
-    <form novalidate [formGroup]="articleForm" #pForm="ngForm" (ngSubmit)="onSubmit()">   
-      <div class="css-post-body">
-        <span mat-line>Article Title:</span>
-           <p>
-             <input style="margin-bottom: 10px;" formControlName="title" type="text" class="css-input" placeholder="max 25 characters"></p>
-           
-             
-           
-             <span mat-line>Article content:</span>
-           <p>
-             <textarea formControlName="content" placeholder="max 100 characters" rows="5" class="css-input"></textarea></p>
-      </div>
-      <div class="modal-footer">
+    <form novalidate [formGroup]="userForm" (ngSubmit)="onSubmit()" #uform="ngForm" *ngIf="bool">   
+      <div class="modal-body">
+          <p>
+            <span style="display: block; line-height:50px; position: relative; flex: auto; 
+            width: 180px; color: rgb(110, 108, 108)">Profile pic: </span>
+            <input id="file" class="file-input min-width" type="file" #userPhoto (change)="onFileChange($event)">
+          </p>
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="name" placeholder="Name" type="text" required>
+                <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <span *ngIf="name.errors.required">Name is required!</span>
+                </mat-error>         
+            </mat-form-field> 
+            <br>
+        </p>
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="username" placeholder="Username" type="text" required>
+                <mat-error *ngIf=" username.invalid && (username.dirty || username.touched)">
+                    <span *ngIf="username.errors.required">Username is required!</span>
+                    <span *ngIf="username.errors.minlength">Username should be atleast 4 characters</span>
+                    <span *ngIf="username.errors.maxlength">Username should not be more than 25 characters</span>
+                    <span *ngIf="username.errors.minlength"><span *ngIf="username.errors.maxlength"><span *ngIf="username.errors.pattern">Allowed: letters, underscores, digits</span></span></span>
+                </mat-error>       
+            </mat-form-field> 
+            <br>
+        </p>
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="email" placeholder="Email" type="email" required>
+                <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <span *ngIf="email.errors.required">Email is required!</span>
+                    <span *ngIf="email.errors.email">Invalid email</span>
+                </mat-error>           
+            </mat-form-field> 
+            <br>
+        </p>
+    </div>
+    <div class="modal-footer">
         <button mat-button (click)="activeModal.close('Close click')">Cancel</button>
-        <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="articleForm.invalid || bool===false">Post</button>
-      </div>
+        <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="userForm.invalid" >Update</button> <!--user cannot submit if form entry is invalid-->
+    </div>
     </form>  
+    <div class="container" *ngIf="!bool" style="margin-top:30px;">
+        <mat-spinner *ngIf="!errMess"></mat-spinner> <span>Loading...</span>
+        <p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
+        </div>
   </div>

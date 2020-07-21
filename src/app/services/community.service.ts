@@ -14,20 +14,31 @@ export class CommunityService {
   constructor( private ProcessHTTPMsgService: ProcesshttpmsgService, private http: HttpClient) { }
 
   getPosts() : Observable<Post[]> {
-    return this.http.get<Post[]>(URL + 'community').pipe(catchError(this.ProcessHTTPMsgService.handleError));
+    return this.http.get<Post[]>(URL + 'api/community').pipe(catchError(this.ProcessHTTPMsgService.handleError));
   }
   getCategorizedPost(cat: string) : Observable<Post[]> {
-    return this.http.get<Post[]>(URL + 'community?category='+cat).pipe(catchError(this.ProcessHTTPMsgService.handleError));
+    return this.http.get<Post[]>(URL + 'api/community?category='+cat).pipe(catchError(this.ProcessHTTPMsgService.handleError));
   }
   getUsersPosts(userid :string) : Observable<Post[]> {
-    return this.http.get<Post[]>(URL+'community?userid='+userid).pipe(catchError(this.ProcessHTTPMsgService.handleError));
+    return this.http.get<Post[]>(URL+'api/community?userId='+userid).pipe(catchError(this.ProcessHTTPMsgService.handleError));
   }
-  communityPost(post :Post) : Observable<Post> {
+  communityPost(post :Post) : Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':'application/json'
       })
     };
-    return this.http.post<Post>(URL+'community',post,httpOptions).pipe(catchError(this.ProcessHTTPMsgService.handleError));
+    return this.http.post<any>(URL+'api/community',post,httpOptions).pipe(catchError(this.ProcessHTTPMsgService.handleError));
+  }
+  deletePost(_id: string) : Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json'
+      }),
+      body: {
+        '_id' : _id
+      }
+    };
+    return this.http.delete<any>(URL+'api/community',httpOptions).pipe(catchError(this.ProcessHTTPMsgService.handleError));
   }
 }

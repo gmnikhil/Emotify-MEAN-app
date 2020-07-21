@@ -1,14 +1,15 @@
-<div class=s-tile>
+<div class=s-tile *ngIf="!load">
 <div>
     <h1>What are you feeling?</h1>
     <div class="container" [@flyInOut]>
         <div class="row container">
             <div class ="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 grid-tile" 
-            *ngFor="let tile of tiles" [style.background]=tile.color (click)="updateEmotion(tile.emotion)" routerLink="/article">
+            *ngFor="let tile of tiles" [style.background]=tile.color (click)="updateEmotion(tile.emotion)">
                 <h1 class="container">{{tile.emotion}}</h1>
             </div>
         </div>
     </div>
 </div>
 </div>
-<app-emotification></app-emotification>
+<app-article *ngIf="load"></app-article>
+<app-emotification *ngIf="!load" style="position: absolute;"></app-emotification>

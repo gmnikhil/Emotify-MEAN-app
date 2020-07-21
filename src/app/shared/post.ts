@@ -1,7 +1,8 @@
 export class Post {
-    time: string;
-    id: string;
+    date: string;
+    _id: string;
     content: string;
     category: string;
-    userid: string;
+    userId: string;
+    title: string;
 }

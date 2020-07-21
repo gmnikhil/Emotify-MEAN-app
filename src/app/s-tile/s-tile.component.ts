@@ -1,7 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { flyInOut,expand,revolve} from '../animations/app.animations';
 import { Emotion } from '../shared/emotion';
-import { Router } from '@angular/router';
 
 export interface Tile {
   color: string;
@@ -19,26 +18,28 @@ export interface Tile {
   ]
 })
 export class STileComponent implements OnInit {
-
-  constructor(private renderer: Renderer2, private emotion: Emotion, private router: Router) {
-    
+  load: boolean;
+  constructor(private renderer: Renderer2, private emotion: Emotion) {
+    this.load = false;
   }
 
   ngOnInit(): void {
-    this.renderer.setStyle(document.body,'background-image','url(../../assets/grey.jpg)')
+    this.renderer.setStyle(document.body,'background-color','indigo');
   }
+
   tiles: Tile[] = [
     {color: 'orange', emotion: 'Happy'},
     {color: 'grey', emotion:'Sad'},
     {color: 'crimson', emotion:'Nervous'},
     {color: 'lightblue', emotion: 'Love'},
     {color: 'black', emotion: 'Alone'},
-    {color: 'violet', emotion: 'Frightened'},
+    {color: 'violet', emotion: 'Fear'},
     {color: 'gold', emotion: 'Broken'},
     {color: 'green', emotion: 'Integrity'}
   ];
 updateEmotion(emo: string) {
-  this.emotion.emo=emo;
-  this.router.navigate(['article']);
-}
+  this.emotion.emo = emo;
+  this.load = true;
+  this.renderer.setStyle(document.body,'background-color','rgb(219, 166, 217)');
+  }
 }

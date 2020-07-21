@@ -21,7 +21,7 @@ import { AboutComponent } from './about/about.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { STileComponent } from './s-tile/s-tile.component';
-import { HighlightDirective } from './directives/highlight.directive';
+import { VarDirective } from './directives/highlight.directive';
 import { EmotificationComponent } from './emotification/emotification.component';
 import { ArticleComponent } from './article/article.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -47,6 +47,9 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { UnauthorizedInterceptor } from './services/auth.interceptor';
 import { RhomeComponent } from './rhome/rhome.component';
+import { AuthguardService } from './services/authguard.service';
+import { LikesService } from './services/likes.service';
+import { MatProgressSpinnerModule } from'@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,7 @@ import { RhomeComponent } from './rhome/rhome.component';
     AboutComponent,
     ToolbarComponent,
     STileComponent,
-    HighlightDirective,
+    VarDirective,
     EmotificationComponent,
     ArticleComponent,
     CommunityComponent,
@@ -86,7 +89,8 @@ import { RhomeComponent } from './rhome/rhome.component';
     MatInputModule,
     FormsModule,
     MatListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     ArticlesService,
@@ -94,7 +98,9 @@ import { RhomeComponent } from './rhome/rhome.component';
     Emotion,
     UserService,
     CommunityService,
+    AuthguardService,
     AuthService,
+    LikesService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

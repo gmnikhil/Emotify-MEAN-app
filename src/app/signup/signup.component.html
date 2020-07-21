@@ -1,10 +1,17 @@
 <div class="modal-header">
     <h4 class="modal-title">Signup</h4>
+    <button type="button" aria-label="Close button" class="close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 <form class="container" novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit()" #sform="ngForm">
     <div class="modal-body">
+        <p *ngIf="bool">
+            <mat-spinner></mat-spinner>
+        </p>
+        
         <p>
-            <mat-form-field class="half-width">
+            <mat-form-field class="col-8">
                 <input matInput formControlName="name" placeholder="Name" type="text" required>
                 <mat-error *ngIf=" name.invalid && (name.dirty || name.touched)">
                     <span *ngIf="name.errors.required">Name is required!</span>
@@ -13,7 +20,7 @@
             <br>
         </p>
         <p>
-            <mat-form-field class="half-width">
+            <mat-form-field class="col-8">
                 <input matInput formControlName="username" placeholder="Username" type="text" required>
                 <mat-error *ngIf=" username.invalid && (username.dirty || username.touched)">
                     <span *ngIf="username.errors.required">Username is required!</span>
@@ -25,7 +32,7 @@
             <br>
         </p>
         <p>
-            <mat-form-field class="half-width">
+            <mat-form-field class="col-8">
                 <input matInput formControlName="email" placeholder="Email" type="email" required>
                 <mat-error *ngIf=" email.invalid && (email.dirty || email.touched)">
                     <span *ngIf="email.errors.required">Email is required!</span>
@@ -35,7 +42,7 @@
             <br>
         </p>
         <p>
-            <mat-form-field class="half-width">
+            <mat-form-field class="col-8">
                 <input matInput formControlName="password" placeholder="Password" type="password" required>
                 <mat-error *ngIf=" password.invalid && (password.dirty || password.touched)">
                     <span *ngIf="password.errors.required">Password is required!</span>
@@ -45,7 +52,7 @@
             <br>
         </p>
         <p>
-            <mat-form-field class="half-width">
+            <mat-form-field class="col-8">
                 <input matInput formControlName="confirmpassword" placeholder="Confirm Password" type="password" required>
                 <mat-error *ngIf=" confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)">
                     <span *ngIf="confirmpassword.errors.required">Required!</span>

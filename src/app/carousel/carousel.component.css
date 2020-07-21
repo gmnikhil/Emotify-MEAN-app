@@ -1,3 +1,15 @@
 .car-im {
     border-radius: 25px;
 }
+ng-template:focus {
+    outline: none;
+}
+.carousel-item-active:focus {
+    outline:none;
+}
+img:focus {
+    outline:none;
+}
+ngb-carousel:focus {
+    outline:none;
+}

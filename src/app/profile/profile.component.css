@@ -5,14 +5,17 @@
 }
 button {
     margin:20px;
+    background-color: white;
+    color: black;
 }
 mat-card {
     border:1px solid;
     border-radius: 20px 0 20px 0; 
-    margin-left:8%;
-    margin-right: 15%;
+    margin-left:20px;
+    margin-right: 20px;
     
-    background-color: #f2f2f2;
+    background-color: indigo;
+    color: white;
     margin-bottom: 15px;
     margin-top: 15px;
     position: relative;
@@ -24,11 +27,9 @@ p {
 .encaps {
     padding:20px;
     border-radius:20px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
     margin-left: 80px;
-}
-.css-box {
-    
+    right:0;    
 }
  .user-first {
     text-align: center;
@@ -38,10 +39,99 @@ p {
  }
  .css-options {
      text-align: center;
-     margin-top: 5px;
+     margin-top: 15px;
      margin-bottom: 5px;
-     background-color: #f1f1f1;
+     background-color: hotpink;
      padding: 10px;
      border-radius: 10px;
  }
+ .post-css {
+    border-right: 2px white solid; 
+    cursor: grab;
+ }
+ .like-css {
+     cursor : grab;
+ }
+ .click-css {
+     opacity: 0.5;
+     cursor: default !important;
+ }
  
+ .user-css {
+     background-color: indigo;
+     color: white;
+     border-radius: 20px;
+ }
+ .css-head {
+     font-size: larger;
+     
+ }
+ .icon-down {
+     position: absolute;
+     right:25px;
+     top:30px;
+     cursor: grab;
+ }
+ .icon-love {
+     left: 20px;
+     position: absolute;
+     bottom: 20px;
+     cursor: grab;
+ }
+ .iconLoved {
+    color: hotpink;
+    text-shadow: sandybrown 2px 1px 5px;
+ }
+ 
+.del-button {
+    position: absolute;
+    top: 40px;
+    right: 0px;
+}
+.css-logout :focus {
+    outline: none !important;
+}
+@media only screen and (max-width: 550px) {
+    .encaps {
+        margin-left: 60px;
+    }
+}
+
+ @media only screen and (max-width: 960px) {
+     mat-card {
+         margin-right:0 !important;
+         margin-left: 0 !important;
+     }
+     .css-box {
+        padding:0px !important;
+    }
+    .encaps {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    mat-card-content {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .user-css {
+        margin-left:20px;
+        margin-right: 20px;
+    }
+    .user-second {
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+ }
+@media only screen and (max-width: 690px) {
+    .user-css {
+        margin-left:0;
+        margin-right: 0;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .user-css {
+        font-size: small;
+    }
+}

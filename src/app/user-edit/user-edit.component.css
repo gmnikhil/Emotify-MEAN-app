@@ -1,53 +1,13 @@
-.css-input {
-    width: 80%;
-    border-radius: 0 20px 0 20px;
-    border: 4px solid green;
-    padding: 10px;
+.css-edit {
+    background-color: rgb(219, 166, 217);
+    color: indigo;
 }
-.css-input:focus {
+.file-input:focus {
     outline: none;
 }
-p {
-    text-align: center;
-    padding-top: 20px;
+.max-width {
+    width:100%;
 }
-ul {
-    list-style-type: none;
-    padding: 20px;
-    text-align: center;
-}
-li{
-    display: inline-block;
-    color: whitesmoke;
-}
-li:hover {
-    opacity: 0.7;
-}
-.cat-icon{
-    border: 2px solid;
-    border-radius: 20px 0 20px 0;
-    position: relative;
-    color: black;
-    background-color: #f2f2f2;
-}
-.cat-icon:focus {
-    outline:none;
-}
-button {
-    color: whitesmoke;
-}
-li{
-    padding: 10px;
-}
-.css-post {
-    padding: 20px;
-    background-color: rgb(99, 94, 94);
-}
-.css-post-title {
-    color: whitesmoke;
-}
-span {
-    text-align: left;
-    color: whitesmoke;
-    padding: 10px;
+.min-width {
+    width:120px;
 }

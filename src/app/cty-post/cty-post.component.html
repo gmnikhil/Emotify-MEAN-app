@@ -11,17 +11,22 @@
     <div class="css-post-body">
       <span mat-line>Post Title:</span>
          <p>
-           <input style="margin-bottom: 10px;" formControlName="title" type="text" class="css-input" placeholder="max 25 characters"></p>
-         
-           
+           <input style="margin-bottom: 10px;" formControlName="title" type="text" class="css-input" placeholder="max 40 characters">
+           <br>
+           <span style="color: hotpink;" *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.maxlength"> Title cannot exceed 40 characters</span>
+         </p>
+
          
            <span mat-line>Post content:</span>
          <p>
-           <textarea formControlName="content" placeholder="max 100 characters" rows="5" class="css-input"></textarea></p>
+           <textarea formControlName="content" placeholder="max 500 characters" rows="5" class="css-input"></textarea>
+           <br>
+           <span style="color: hotpink;" *ngIf="content.invalid && (content.dirty || content.touched) && content.errors.maxlength"> Content cannot exceed 500 characters</span>
+        </p>
     </div>
     <div class="modal-footer">
       <button mat-button (click)="activeModal.close('Close click')">Cancel</button>
-      <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="postForm.invalid || bool===false">Post</button>
+      <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="postForm.invalid || !bool">Post</button>
     </div>
   </form>  
 </div>

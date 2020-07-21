@@ -1,38 +1,25 @@
-
 .css-community-div {
     right:0;
-    width:300px;
+    width:80px;
     height:100%;
     position: fixed;
     font-family: 'Chelsea market';
-    color: whitesmoke;
+    color: white;
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color:  rgb(56, 42, 42);
+    background-color:  hotpink;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     top:0;   
 }
-.encapsulate {
-    bottom:0 !important;
-    height: 100%;
-    margin-left: 80px;
-    position: relative;
-    right:0;
-    left:0;
-}
 .css-box {
- right:27%;  
+    margin-left: 80px;
+    margin-right: 80px;
+    padding-left: 15px;
+    padding-right: 15px; 
 }
-mat-card {
-    border:1px solid;
-    border-radius: 20px 0 20px 0; 
-    left: 20%;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    position: relative;
-}
+
 p {
     font-size: large;
     font-family: 'pt sans';
@@ -43,43 +30,104 @@ p {
     display: inline;
     position: relative;
 }
+button {
+    border-radius: 30px 30px 30px 30px;
+}
 li {
-    display: inline-block;
+    display: list-item;
     padding: 0;
     position: relative;
 }
 .css-col {
     text-align: center; 
     font-size: xx-large;
+    padding-left:0;
+    padding-right: 0;
 }
-@media only screen and (max-width: 750px) {
-    li {
-        display: list-item;
+
+.icon-down {
+    position: absolute;
+    right:25px;
+    top:30px;
+    cursor: grab;
+}
+.icon-love {
+    left: 20px;
+    position: absolute;
+    bottom: 20px;
+    cursor: grab;
+}
+.iconLoved {
+   color: hotpink;
+   text-shadow: sandybrown 2px 1px 5px;
+}
+mat-card {
+    border:1px solid;
+    border-radius: 20px 0 20px 0; 
+    margin-left:20px;
+    margin-right: 20px;
+    
+    background-color: indigo;
+    color: white;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    position: relative;
+}
+button:focus {
+    outline:none;
+}
+.cat-icon {
+    background-color: white;
+    color:black;
+    font-style: italic;
+}
+
+@media only screen and (max-width: 960px) {
+    mat-card {
+        margin-right:0 !important;
+        margin-left: 0 !important;
+    }
+    .css-box {
+       padding:5px !important;
+   }
+   mat-card-content {
+       padding-left: 0px !important;
+       padding-right: 0px !important;
+   }
+}
+@media only screen and (max-width: 550px) {
+    .css-box {
+        margin-left: 60px;
+        margin-right: 50px;
     }
     .css-community-div {
-        width:80px;
-        text-align: center;
+        width: 50px;
     }
-    
+    li {
+        transform: rotateZ(-90deg);
+        margin-right:20px;
+    }
 }
-@media only screen and (max-height: 550px) {
+
+
+@media only screen and (max-height: 550px) and (max-width: 750px) {
     .css-col {
         font-size: x-large;
     }
 }
-@media only screen and (max-height: 415px) {
+@media only screen and (max-height: 415px) and (max-width: 750px) {
     .css-col {
         font-size: larger;
     }
 }
-@media only screen and (max-height: 345px) {
+@media only screen and (max-height: 345px) and (max-width: 750px) {
     .css-col {
         font-size: large;
     }
 }
-@media only screen and (max-height: 295px) {
+@media only screen and (max-height: 295px) and (max-width: 750px) {
     .css-community-div {
         display:none; 
     }
 }
- 
+

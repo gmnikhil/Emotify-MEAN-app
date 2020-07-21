@@ -26,19 +26,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    console.log('User: ', this.user);
     this.authService.logIn(this.user)
       .subscribe(res => {
-        if (res.success) {
-          this.router.navigate(['ehome']);
-          this.activeModal.close('Close click');
+        if(res.success) {
+            this.authService.getUserId().subscribe(id=>{
+              this.activeModal.close('Close click');
+            },
+            err=>this.errMess="Try again");
+            
         } else {
-          console.log(res);
+          this.errMess="Authorization denied";
         }
       },
       error => {
-        console.log(error);
-        this.errMess = error;
+        this.errMess="Authorization denied";
       });
   }
        

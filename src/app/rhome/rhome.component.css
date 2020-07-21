@@ -1,6 +1,8 @@
 .encaps {
     margin-left: 70px;
     padding: 20px;
+    padding-right: 10px;
+    
 }
 .content {
     padding: 20px;
@@ -8,12 +10,21 @@
 .content h1 {
     text-align: center;
     margin-bottom: 15px;
+    color: sandybrown;
 }
 .big-box {
-    margin-bottom: 85px;
-    margin-top: 85px;
-    background-color: rgb(223, 180, 220);
+    margin-bottom: 55px;
+    margin-top: 55px;
+    background-color: indigo;
     border-radius: 20px 20px 20px 20px;
+    color: whitesmoke;
+    margin-right: 0;
+}
+img {
+    border-radius: 20px 20px 20px 20px ;
+}
+mat-divider {
+    border-top-color: cornsilk;
 }
 .emotify {
     top:0;
@@ -22,14 +33,22 @@
     padding-bottom: 20px;
     margin-left: -10px;
     position: fixed;
-    background-color: whitesmoke;
+    background-color: rgb(255, 90, 175);
+    color: white;
+    z-index: 1;
 }
 .css-h1 {
     font-size: xx-large;
-    font-family: 'Sarabun';
+    font-family: 'chelsea market';
 }
 .css-h3 {
     font-size: larger;
+}
+.username {
+    right: 90px;
+    top: 35px;
+    position: absolute;
+    font-family: 'sarabun';
 }
 p{
     font-family: 'PT Sans';
@@ -37,4 +56,27 @@ p{
 }
 h1{
     font-family: 'Sarabun';
+}
+@media only screen and (max-width: 550px) {
+    .encaps {
+        margin-left:50px;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .css-h3 {
+        display: none;
+    }
+    .big-box {
+        margin-bottom: 35px;
+    margin-top: 35px;
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .username {
+        top:auto;
+        bottom:1px;
+    }
 }

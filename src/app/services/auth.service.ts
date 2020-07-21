@@ -6,6 +6,7 @@ import { ProcesshttpmsgService } from './processhttpmsg.service';
 import { URL } from '../shared/url';
 import { UserService } from'../services/user.service';
 import { Emotion } from '../shared/emotion';
+import { Router } from '@angular/router';
 
 export interface AuthResponse {
   status: string;
@@ -27,14 +28,12 @@ export class AuthService {
   authToken: string = undefined;
   
   constructor(private http: HttpClient, private processHTTPmsgService: ProcesshttpmsgService,
-    private userService: UserService, private emotion: Emotion) {   }
+    private userService: UserService, private emotion: Emotion, private router: Router) {   }
 
   checkJWTtoken() {
-    this.http.get<JWTresponse>(URL+'users/checkJWTtoken').subscribe(res=>{
-      console.log('JWT Token Valid:', res);
+    this.http.get<JWTresponse>(URL+'api/users/checkJWTtoken').subscribe(res=>{
       this.sendUserId(this.emotion.userId); //
     },err=>{
-      console.log('JWT Token invalid: ',err);
       this.destroyUserCredentials();
     });
   }
@@ -46,7 +45,6 @@ export class AuthService {
   }
   loadUserCredentials() {
     const credentials = JSON.parse(localStorage.getItem(this.tokenKey));
-    console.log('loadUserCredentials: ',credentials);
     if(credentials && credentials._id!==undefined) {
       this.useCredentials(credentials);
       if (this.authToken) {
@@ -54,8 +52,8 @@ export class AuthService {
       }
     }
   }
+ 
   storeUserCredentials(credentials: any) {
-    console.log('storeUserCredentials: ',credentials);
     localStorage.setItem(this.tokenKey, JSON.stringify(credentials));
     this.useCredentials(credentials);
   }
@@ -63,22 +61,27 @@ export class AuthService {
     this.isAuthenticated = true;
     this.sendUserId(credentials._id);
     this.authToken = credentials.token;
+    this.emotion.userId = credentials._id;
   }
   destroyUserCredentials() {
     this.authToken = undefined;
     this.clearUserId();
     this.isAuthenticated = false;
     localStorage.removeItem(this.tokenKey);
+    this.router.navigate(['home']);
+    location.reload();
   }
   logIn(user: any): Observable<any> {
-    return this.http.post<AuthResponse>(URL + 'users/login',{'username':user.username, 'password': user.password})
+    return this.http.post<AuthResponse>(URL + 'api/users/login',{'username':user.username, 'password': user.password})
     .pipe(map(res=>{
       this.userService.getUserWithUsername(user.username).subscribe(user=>{
-        this.emotion.userId=user[0]._id;console.log("emotionid",this.emotion.userId,user[0]);
+        this.emotion.userId=user[0]._id;
         this.storeUserCredentials({
           _id: this.emotion.userId, token:res.token
         });
-      },err=>console.log(err));
+        this.loadUserCredentials();
+        this.router.navigate(['ehome']);
+      },err=>alert("Error"));
       
     return {'success':true, 'username': user.username };
   }),catchError(error=>this.processHTTPmsgService.handleError(error)));

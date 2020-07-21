@@ -1,37 +1,30 @@
-<div class="encapsulate">
-   <div class="css-community-div">
-      <div class="col-12 css-col">
-         <ul class="css-list-text">
-            <li>C</li>
-            <li>O</li>
-            <li>M</li>
-            <li>M</li>
-            <li>U</li>
-            <li>N</li>
-            <li>I</li>
-            <li>T</li>
-            <li>Y</li>
-         </ul>
-      </div>
+<div class="css-community-div">
+   <div class="col-12 css-col">
+      <ul class="css-list-text">
+         <li *ngFor="let cat of cats"><button mat-icon-button class="cat-icon" [ngStyle]="getStyle(cat.bg, cat.color)" (click)="catClick(cat.emotion)">{{cat.letter}}</button></li>
+      </ul>
    </div>
-   <div class="col-8 container css-box" *ngFor="let post of posts">
-      <mat-card>
-      <mat-card-header>
-         <mat-card-title>{{post.userid}}</mat-card-title>
-         <img mat-card-avatar *ngIf="this.loc===false" src="">
-         <mat-card-subtitle>{{post.category}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-         <p>{{post.content}}</p>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur repudiandae odit architecto in unde nihil laboriosam autem? Repellendus minima illo maiores consequuntur aperiam fuga, a alias quibusdam, ipsa, sit odio?</p>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, veniam. Soluta molestias, voluptatum sapiente, nobis saepe rem beatae excepturi autem obcaecati laborum dicta itaque laboriosam! Voluptate suscipit vero excepturi labore.</p>
-      </mat-card-content>
-      <mat-card-footer>
-         <mat-card-actions>
-            <button mat-button style="right:5px; top: 15px; position: absolute;" placement="left"><mat-icon>arrow_down</mat-icon></button>
-         </mat-card-actions>
-      </mat-card-footer>
-   </mat-card>
-   </div>
+</div>
+
+<div class="css-box" *ngIf="load">
+   <mat-card *ngFor="let p of templatePost; let i = index" [@community]>
+   <mat-card-header>
+      <mat-card-title><h4 style="word-break: break-all;">{{p.userName}}</h4></mat-card-title>
+      <img mat-card-avatar [src]="url+p.userImage.split('uploads\\')[1]">
+      <mat-card-subtitle style="font-size: larger; color:wheat;">{{p.category | lowercase}}</mat-card-subtitle>
+   </mat-card-header>
+   <span style="float:right; font-size: x-small; word-break: break-all; text-align: right;
+   width: 100%;">{{p.date}}</span>
+   <mat-card-content style="padding: 10px; margin-bottom:40px;">
+      <p style="font-size: x-large; font-family: monospace; word-break: break-word;">{{p.title}}</p>
+      
+      <p>{{p.content}}</p>
+   </mat-card-content>
+         <mat-icon class="icon-love"  (click)="fnLike(i)" [class.iconLoved]=p.like>favorite</mat-icon>
+</mat-card>
+</div>
+<div class="container" style="position: absolute; top:30px; margin-left: 120px;" *ngIf="!load">
+   <mat-spinner *ngIf="!errMess"></mat-spinner> <span>Loading...</span>
+<p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
 </div>
 <app-emotification></app-emotification>

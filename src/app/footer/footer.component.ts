@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatIconRegistry} from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
+import {URL} from '../shared/url';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',

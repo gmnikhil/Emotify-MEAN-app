@@ -6,28 +6,16 @@ div {
     height:100%;
     text-align: center;
     padding: 0;
-    display: inline-block;
+
 }
 .homed {
-    background-color: #f1f1f1;
-    color: black;
-}
-.articled {
-    background-color:  #bb1f1f;
+    background-color: hotpink;
     color: white;
 }
-.articleb {
-    background-color: salmon;
-}
-.communityd {
-    background-color: rgb(56, 42, 42);
-    color: white;
-}
+
 .homeb {
     background-color: rgb(240, 154, 213);
-}
-.communityb {
-    background-color: sandybrown;
+    background-color: indigo;
 }
 a {
     transform: rotateZ(90deg);
@@ -69,7 +57,7 @@ button:active, button:focus {
     box-shadow: none !important;
 }
 
-@media only screen and ( max-height: 640px ) {
+@media only screen and ( max-height: 750px ), (max-height: 1024px) and (max-width: 1500px) {
 
     .css-bot {
         width:0;
@@ -88,6 +76,15 @@ button:active, button:focus {
         line-height: 100px;
     }
 }
+@media only screen and (max-width:550px) {
+    div {
+        width:60px;
+    }
+    .top-ul {
+        margin-left: -10px;
+    }
+}
+
 
 @media only screen and ( max-height: 500px ) {
     .top-ul {

@@ -1,55 +1,66 @@
 <app-emotification></app-emotification>
-<div class="encaps">
+<div class="encaps" *ngIf="!errMess" >
     <div class="emotify w-100">
-        <span class="css-h1">Emotify: </span><span class="css-h3"><i>Your peace platform</i></span>
+        <span class="css-h1" [@rhome] *ngIf="bool"><i>EMOTIFY  </i></span><span class="css-h3"><i>Your </i></span><span class="css-h3"><i>peace </i></span><span class="css-h3"><i>platform </i></span>
+        <span class="username">ಠ‿↼  {{username}}</span>
     </div>
     <mat-divider></mat-divider>
-    <div class="big-box"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center">
+    <div class="big-box" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" 
+    fxLayoutAlign.xs="start center" fxLayoutAlign.sm="start center" fxLayoutAlign.gt-sm="center center"
+    style="margin-top:105px;" [@rhome]>
         <div fxFlex>
-            <img src="../../assets/couple.jpg" width="100%" height="100%">
+            <img src="{{url}}images/leaves.jpg" width="100%" height="100%">
         </div>        
         <div fxFlex class="content">
             <h1>About</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum iusto optio provident sed nam quia aperiam non quos libero! Voluptatum totam itaque quae error sunt, adipisci tenetur! Maxime, soluta!</p>
+            <p>Emotify is a platform for users all around the globe to improve their
+                emotional state of being. Through a systamized process and by providing insights, 
+                we aim to make it easy for you adapt with your mood swings. </p>
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div class="big-box"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center">        
+    <div class="big-box" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" 
+    fxLayoutAlign.xs="start center" fxLayoutAlign.sm="start center" fxLayoutAlign.gt-sm="center center" [@rhome]>        
         <div fxFlex class="content">
             <h1>Purpose</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum iusto optio provident sed nam quia aperiam non quos libero! Voluptatum totam itaque quae error sunt, adipisci tenetur! Maxime, soluta!</p>
+            <p>We at Emotify intend to build a community where people support each other during difficult times. In 
+                addition, we aim to bring the light of hope to those engulfed by the seemingly overpowering nights of 
+            despair.</p>
         </div>
         <div fxFlex>
-            <img src="../../assets/siblings.jpg" width="100%" height="100%">
+            <img src="{{url}}images/siblings.jpg" width="100%" height="100%">
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div class="big-box"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center">
+    <div class="big-box" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" 
+    fxLayoutAlign.xs="start center" fxLayoutAlign.sm="start center" fxLayoutAlign.gt-sm="center center" [@rhome]>
         <div fxFlex>
-            <img src="../../assets/stones.jpg" width="100%" height="100%">
+            <img src="{{url}}images/stones.jpg" width="100%" height="100%">
         </div>        
         <div fxFlex class="content">
             <h1>Vision</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum iusto optio provident sed nam quia aperiam non quos libero! Voluptatum totam itaque quae error sunt, adipisci tenetur! Maxime, soluta!</p>
+            <p>
+                A community where people are not afraid of speaking up on their personal issues.<br>
+                A community where people understand each other's feelings.<br>
+                A community where everyone is treated without any prejudice.
+            </p>
         </div>
     </div>
     <mat-divider></mat-divider>
+    <div class="big-box" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" 
+    fxLayoutAlign.xs="start center" fxLayoutAlign.sm="start center" fxLayoutAlign.gt-sm="center center" [@rhome]>        
+        <div fxFlex class="content">
+            <h1>Contents</h1>
+            <p>Emotify presents to you special as well as handpicked articles from all over the web as an 
+                attempt to lift you to glory. This venture aims at highlighting the importance 
+                of mental health in leading successful lives.</p>
+        </div>
+        <div fxFlex>
+            <img src="{{url}}images/journey.jpg" width="100%" height="100%">
+        </div>
+    </div>
+</div>
+<div class="container" style="position: absolute; top:30px; margin-left: 120px;" *ngIf="!bool">
+<mat-spinner *ngIf="!errMess"></mat-spinner> <span>Loading...</span>
+<p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
 </div>

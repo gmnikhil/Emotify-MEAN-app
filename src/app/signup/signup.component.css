@@ -2,3 +2,6 @@
     border: none;
     outline: none;
 }
+.file-input:focus {
+    outline:none;
+}

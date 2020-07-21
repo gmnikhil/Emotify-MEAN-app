@@ -6,13 +6,18 @@
     margin:0;
     padding:0;
 }
+
+body {
+    color:black;
+}
 .space-right {
     flex: 1 1 auto;
 }
 
 .card {
     max-width: 350px;
-    min-height: 450px;
+    min-height: 490px;
+    background-color: #f4f4f4;
 }
 body {
     background-position-x: center;

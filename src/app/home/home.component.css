@@ -1,0 +1,9 @@
+.mat-card-header-text {
+    margin-left:0 !important;
+}
+p {
+    font-family:'sarabun';
+}
+app-carousel:focus {
+    outline:none;
+}
