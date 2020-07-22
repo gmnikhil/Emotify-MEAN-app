@@ -7,15 +7,18 @@
 <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">   <!-- novalidate shifts validation responsibilty from browser to angular -->
   <mat-error *ngIf="errMess" style="text-align: center; line-height: 60px;">{{errMess}}</mat-error>
   <div class="modal-body">
+      <p *ngIf="!bool">
+        <mat-spinner></mat-spinner>
+      </p>
       <p>
         <mat-form-field class="col-8">
-          <input matInput placeholder="Username" #username1="ngModel" type="text" [(ngModel)]="user.username" name="username" required>
+          <input novalidate matInput placeholder="Username" #username1="ngModel" type="text" [(ngModel)]="user.username" name="username" required>
           <mat-error *ngIf="username1.errors?.required">Username is required</mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field  class="col-8">
-          <input matInput placeholder="Password" #password="ngModel" type="password" [(ngModel)]="user.password" name="password" required>
+          <input novalidate matInput placeholder="Password" #password="ngModel" type="password" [(ngModel)]="user.password" name="password" required>
           <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
         </mat-form-field>
       </p>

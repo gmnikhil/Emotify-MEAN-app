@@ -3,6 +3,7 @@
     <h4 class="css-post-title">New Post</h4>
   </div>
   <br>
+  <p *ngIf="sub"><mat-spinner></mat-spinner></p>
   <span mat-line>Choose Emotion:</span>
   <ul>
     <li *ngFor="let cat of cats"><button mat-raised-button class="cat-icon" [ngStyle]="getStyle(cat.bg, cat.color)" (click)="catClick(cat.emotion)">{{cat.letter}}</button></li>
@@ -11,15 +12,14 @@
     <div class="css-post-body">
       <span mat-line>Post Title:</span>
          <p>
-           <input style="margin-bottom: 10px;" formControlName="title" type="text" class="css-input" placeholder="max 40 characters">
+           <input novalidate style="margin-bottom: 10px;" formControlName="title" type="text" class="css-input" placeholder="max 40 characters">
            <br>
            <span style="color: hotpink;" *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.maxlength"> Title cannot exceed 40 characters</span>
          </p>
-
-         
+          
            <span mat-line>Post content:</span>
          <p>
-           <textarea formControlName="content" placeholder="max 500 characters" rows="5" class="css-input"></textarea>
+           <textarea novalidate formControlName="content" placeholder="max 500 characters" rows="5" class="css-input"></textarea>
            <br>
            <span style="color: hotpink;" *ngIf="content.invalid && (content.dirty || content.touched) && content.errors.maxlength"> Content cannot exceed 500 characters</span>
         </p>

@@ -6,7 +6,7 @@ import { Emotion } from '../shared/emotion';
 import { User } from '../shared/user';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
-import {HttpClient, HttpHeaders } from'@angular/common/http';
+import { HttpClient, HttpHeaders } from'@angular/common/http';
 import {URL} from '../shared/url';
 
 @Component({
@@ -111,10 +111,12 @@ export class UserEditComponent implements OnInit {
         'enctype':'multipart/form-data'
       })
     };
+    this.bool=false;
     this.http.put(URL+'api/users',data,httpOptions).subscribe(
       res=>{
-      this.activeModal.close('Close click');
+      this.bool=true;
       location.reload();
+      this.activeModal.close('Close click');
       },err=>alert("Oops! Something went wrong!"));
     
   }

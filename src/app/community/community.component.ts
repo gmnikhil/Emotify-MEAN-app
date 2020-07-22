@@ -1,14 +1,12 @@
 import { Component, OnInit, Renderer2, ElementRef} from '@angular/core';
 import { CommunityService } from '../services/community.service';
 import { Post } from '../shared/post';
-import { LikesService } from '../services/likes.service';
 import { UserService } from '../services/user.service';
 import { User } from '../shared/user';
 import {Emotion } from '../shared/emotion';
 import { AuthService } from '../services/auth.service';
 import { Cat } from '../cty-post/cty-post.component';
 import { URL } from '../shared/url'; 
-import {Subscription} from 'rxjs';
 import { community } from '../animations/app.animations';
 
 export interface htmlPost {
@@ -41,7 +39,6 @@ export class CommunityComponent implements OnInit {
   fullPost: htmlPost[] = [];
   user: User;
   bool :Boolean = false;
-  subscription: Subscription;
   cats: Cat[] =[
     {letter:'#H',color:'orange', emotion:'Happy', bg:false},
     {letter:'#S',color:'grey', emotion:'Sad', bg:false},
@@ -53,14 +50,23 @@ export class CommunityComponent implements OnInit {
     {letter:'#I',color:'green', emotion: 'Integrity', bg:false}
   ]
 
-  constructor(private communityService: CommunityService, private likeService: LikesService,
-    private userService: UserService, private emotion: Emotion, private authService: AuthService,
+  constructor(private communityService: CommunityService, private userService: UserService, 
+    private emotion: Emotion, private authService: AuthService,
     private renderer: Renderer2, private el: ElementRef) {
       this.load=false;
      }
 
   ngOnInit(): void {
     this.renderer.setStyle(document.body,'background-color','rgb(256, 230, 256)');
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+          window.scrollTo(0, pos - 20); // how far to scroll on each step
+        } 
+      else {
+          window.clearInterval(scrollToTop);
+        }
+      }, 16);
     this.authService.getUserId().subscribe(id=>{
       this.communityService.getPosts().subscribe((posts) => {
         this.posts = posts;

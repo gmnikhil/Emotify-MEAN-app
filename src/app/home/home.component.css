@@ -7,3 +7,9 @@ p {
 app-carousel:focus {
     outline:none;
 }
+@media only screen and (max-width:485px) {
+    .carou {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

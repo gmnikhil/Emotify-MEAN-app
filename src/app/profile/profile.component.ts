@@ -1,11 +1,10 @@
-import { Component, OnInit, Renderer2, Input } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CommunityService } from '../services/community.service';
 import { Post } from '../shared/post';
 import { User } from '../shared/user';
 import{ UserService } from '../services/user.service';
 import { Emotion } from '../shared/emotion';
 import { AuthService } from '../services/auth.service';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CtyPostComponent } from '../cty-post/cty-post.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
@@ -25,8 +24,8 @@ import { Router } from '@angular/router';
   ]
 })
 export class ProfileComponent implements OnInit {
-load1: boolean;
-load2: boolean;
+load1: boolean =false;
+load2: boolean =false;
 user: User;
 bool: boolean = false;
 userPosts: htmlPost[];
@@ -45,6 +44,15 @@ errMess: string;
 
   ngOnInit(): void {
     this.renderer.setStyle(document.body,'background-color','rgb(256, 230, 256)');
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+        if (pos > 0) {
+          window.scrollTo(0, pos - 20); // how far to scroll on each step
+          } 
+        else {
+          window.clearInterval(scrollToTop);
+        }
+      }, 16);
     this.authService.getUserId().subscribe(id=>{
       this.userService.getUserWithId(id).subscribe(u=>{
         this.user = u[0];

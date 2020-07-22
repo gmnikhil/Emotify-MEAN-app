@@ -6,11 +6,11 @@
    </div>
 </div>
 
-<div class="css-box" *ngIf="load">
-   <mat-card *ngFor="let p of templatePost; let i = index" [@community]>
+<div class="css-box" *ngIf="load" [@community]>
+   <mat-card *ngFor="let p of templatePost; let i = index">
    <mat-card-header>
       <mat-card-title><h4 style="word-break: break-all;">{{p.userName}}</h4></mat-card-title>
-      <img mat-card-avatar [src]="url+p.userImage.split('uploads\\')[1]">
+      <img mat-card-avatar [src]="url+p.userImage.split('uploads/')[1]">
       <mat-card-subtitle style="font-size: larger; color:wheat;">{{p.category | lowercase}}</mat-card-subtitle>
    </mat-card-header>
    <span style="float:right; font-size: x-small; word-break: break-all; text-align: right;
@@ -24,7 +24,7 @@
 </mat-card>
 </div>
 <div class="container" style="position: absolute; top:30px; margin-left: 120px;" *ngIf="!load">
-   <mat-spinner *ngIf="!errMess"></mat-spinner> <span>Loading...</span>
+   <mat-spinner *ngIf="!errMess"></mat-spinner> <p>Loading...</p>
 <p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
 </div>
-<app-emotification></app-emotification>
+<app-emotification *ngIf="load"></app-emotification>

@@ -7,11 +7,11 @@
           <p>
             <span style="display: block; line-height:50px; position: relative; flex: auto; 
             width: 180px; color: rgb(110, 108, 108)">Profile pic: </span>
-            <input id="file" class="file-input min-width" type="file" #userPhoto (change)="onFileChange($event)">
+            <input novalidate id="file" class="file-input min-width" type="file" #userPhoto (change)="onFileChange($event)">
           </p>
         <p>
             <mat-form-field class="half-width">
-                <input matInput formControlName="name" placeholder="Name" type="text" required>
+                <input novalidate matInput formControlName="name" placeholder="Name" type="text" required>
                 <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
                     <span *ngIf="name.errors.required">Name is required!</span>
                 </mat-error>         
@@ -20,9 +20,10 @@
         </p>
         <p>
             <mat-form-field class="half-width">
-                <input matInput formControlName="username" placeholder="Username" type="text" required>
+                <input novalidate matInput formControlName="username" placeholder="Username" type="text" required>
                 <mat-error *ngIf=" username.invalid && (username.dirty || username.touched)">
                     <span *ngIf="username.errors.required">Username is required!</span>
+                    <span *ngIf="username.errors.pattern">permitted: underscores, alphabets, numbers</span>
                     <span *ngIf="username.errors.minlength">Username should be atleast 4 characters</span>
                     <span *ngIf="username.errors.maxlength">Username should not be more than 25 characters</span>
                     <span *ngIf="username.errors.minlength"><span *ngIf="username.errors.maxlength"><span *ngIf="username.errors.pattern">Allowed: letters, underscores, digits</span></span></span>
@@ -32,7 +33,7 @@
         </p>
         <p>
             <mat-form-field class="half-width">
-                <input matInput formControlName="email" placeholder="Email" type="email" required>
+                <input novalidate matInput formControlName="email" placeholder="Email" type="email" required>
                 <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
                     <span *ngIf="email.errors.required">Email is required!</span>
                     <span *ngIf="email.errors.email">Invalid email</span>

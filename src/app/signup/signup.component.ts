@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {FormBuilder,FormGroup,Validators, FormControl, Form} from '@angular/forms';
+import {FormBuilder,FormGroup,Validators, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../shared/user';
 import{ UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Emotion } from '../shared/emotion';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-signup',
@@ -24,7 +24,6 @@ export class SignupComponent implements OnInit {
   confirmpassword: FormControl;
   name: FormControl;
   email: FormControl;
-  subscription: Subscription;
   users: User[];
   bool: boolean;
 
@@ -134,7 +133,6 @@ export class SignupComponent implements OnInit {
   },err=>{
     alert("error");
     this.bool=false;
-  })
-
+    })
   }
 }

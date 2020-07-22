@@ -1,5 +1,5 @@
-<app-emotification></app-emotification>
-<div class="encaps" *ngIf="!errMess" >
+<app-emotification *ngIf="bool"></app-emotification>
+<div class="encaps" *ngIf="!errMess">
     <div class="emotify w-100">
         <span class="css-h1" [@rhome] *ngIf="bool"><i>EMOTIFY  </i></span><span class="css-h3"><i>Your </i></span><span class="css-h3"><i>peace </i></span><span class="css-h3"><i>platform </i></span>
         <span class="username">ಠ‿↼  {{username}}</span>
@@ -60,7 +60,7 @@
         </div>
     </div>
 </div>
-<div class="container" style="position: absolute; top:30px; margin-left: 120px;" *ngIf="!bool">
-<mat-spinner *ngIf="!errMess"></mat-spinner> <span>Loading...</span>
-<p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
+<div class="container" style="position: absolute; top:30px; margin-left: 120px; z-index:2;" *ngIf="!bool">
+    <mat-spinner  *ngIf="!errMess"> </mat-spinner> <br><p *ngIf="!errMess">Loading...</p>
+    <p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
 </div>

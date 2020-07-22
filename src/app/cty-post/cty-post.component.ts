@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormBuilder,FormGroup,Validators, FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from '../services/user.service';
 import { Emotion } from '../shared/emotion';
-import{CommunityService} from '../services/community.service';
-import {Post} from '../shared/post';
+import{ CommunityService } from '../services/community.service';
+import { Post } from '../shared/post';
 
 export interface Cat {
   letter: string;
@@ -24,6 +23,7 @@ export class CtyPostComponent implements OnInit {
   postForm: FormGroup;
   passForm: FormGroup;
   title: FormControl;
+  sub: boolean;
   content: FormControl;
   cats: Cat[] =[
     {letter:'#H',color:'orange', emotion:'Happy', bg:false},
@@ -40,6 +40,7 @@ export class CtyPostComponent implements OnInit {
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private emotion: Emotion, private communityService: CommunityService) {
     this.createFormControls();
     this.createForm();
+    this.sub=false;
    }
 
   ngOnInit(): void {
@@ -82,12 +83,14 @@ export class CtyPostComponent implements OnInit {
     }
   }
   onSubmit() {
+    this.sub=true;
     this.passForm.value.date = new Date().toISOString();
     this.passForm.value.userId = this.emotion.userId;
     this.passForm.value.content = this.postForm.value.content;
     this.passForm.value.title = this.postForm.value.title;
     this.communityService.communityPost(this.passForm.value).subscribe(post=> {
       this.post=post;
+      this.sub=false;
       this.postForm.reset({
         title:"",
         content:"",
@@ -95,7 +98,9 @@ export class CtyPostComponent implements OnInit {
       });
       this.activeModal.close('Close click');
       location.reload();
-    },err=>this.errMess="Oops... Something went wrong!");
+    },err=>{
+      this.sub=false;
+      this.errMess="Oops... Something went wrong!"});
     //this.postFormDirective.resetForm();    
     
   }

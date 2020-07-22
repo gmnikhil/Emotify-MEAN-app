@@ -1,12 +1,12 @@
 div {
-    top:0;
     left:0;
     position: fixed;
     width: 80px;
     height:100%;
     text-align: center;
     padding: 0;
-
+    bottom:0;
+    top:0;
 }
 .homed {
     background-color: hotpink;

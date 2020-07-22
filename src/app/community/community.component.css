@@ -11,7 +11,10 @@
     background-color:  hotpink;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    top:0;   
+    bottom:0;
+}
+.css-community-div li {
+    margin-right: 15px;
 }
 .css-box {
     margin-left: 80px;

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { CommonModule } from '@angular/common';
 import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 import {STileComponent} from './s-tile/s-tile.component';
-
 import {CommunityComponent} from './community/community.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RhomeComponent} from './rhome/rhome.component';
