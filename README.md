@@ -7,7 +7,7 @@ Emotify is a peace platform developed for its users to achieve a better emotiona
 It is made by using angular for front end and express,nodejs for server. Database used is mongodb atlas.
 
 ##
-git clone ``
+git clone `https://github.com/Nikcodes10/Emotify-MEAN-app.git`
 
 ##
 run `npm install' to install the necessary node modules
