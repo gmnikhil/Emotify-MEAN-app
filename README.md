@@ -1,6 +1,5 @@
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
-
 # Emotify
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
 
 ##
 Emotify is a peace platform developed for its users to achieve a better emotional state.
