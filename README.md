@@ -15,4 +15,4 @@ run `npm install' to install the necessary node modules
 run `ng serve' for development build
 
 ##
-use the contents in the dist folder to run the program with an external server
+use the contents in the dist folder to run with an external server
