@@ -1,4 +1,4 @@
-<div class="css-community-div">
+<div class="css-community-div" *ngIf="load" [@opace2]>
    <div class="col-12 css-col">
       <ul class="css-list-text">
          <li *ngFor="let cat of cats"><button mat-icon-button class="cat-icon" [ngStyle]="getStyle(cat.bg, cat.color)" (click)="catClick(cat.emotion)">{{cat.letter}}</button></li>
@@ -6,7 +6,7 @@
    </div>
 </div>
 
-<div class="css-box" *ngIf="load" [@community]>
+<div class="css-box" *ngIf="load" [@opace]>
    <mat-card *ngFor="let p of templatePost; let i = index">
    <mat-card-header>
       <mat-card-title><h4 style="word-break: break-all;">{{p.userName}}</h4></mat-card-title>
@@ -27,4 +27,4 @@
    <mat-spinner *ngIf="!errMess"></mat-spinner> <p>Loading...</p>
 <p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
 </div>
-<app-emotification *ngIf="load"></app-emotification>
+<app-emotification *ngIf="load" [@opace2]></app-emotification>

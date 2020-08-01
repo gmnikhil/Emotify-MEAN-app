@@ -28,22 +28,17 @@ export class UserEditComponent implements OnInit {
   @ViewChild("uform") editFormDirective;
   @ViewChild('userPhoto') userPhoto: ElementRef;
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, 
-    private authService: AuthService, private userService: UserService, private emotion: Emotion,
+    private authService: AuthService, private emotion: Emotion,
     private http: HttpClient) { 
     
   }
 
   ngOnInit(): void {
-    this.authService.loadUserCredentials();
-      this.subscription = this.authService.getUserId()
-        .subscribe(id => { 
-          this.userService.getUserWithId(id).subscribe(user=>{
-            this.user=user[0];
+            this.user=this.emotion.user;
             this.bool=true;
             this.createFormControls();
             this.createForm();
-          },err=>this.errMess="Oops... Something went wrong!")
-        },err=>this.errMess="Oops... Something went wrong!");
+       
   }
   createFormControls() {
     this.username = new FormControl(this.user.username,[Validators.required,Validators.minLength(4),Validators.maxLength(25),Validators.pattern("[a-zA-Z0-9_]{4,25}")]);
@@ -113,9 +108,9 @@ export class UserEditComponent implements OnInit {
     };
     this.bool=false;
     this.http.put(URL+'api/users',data,httpOptions).subscribe(
-      res=>{
+      user=>{
+      this.authService.storeUser(user);
       this.bool=true;
-      location.reload();
       this.activeModal.close('Close click');
       },err=>alert("Oops! Something went wrong!"));
     

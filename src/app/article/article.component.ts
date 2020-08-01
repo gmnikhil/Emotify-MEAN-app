@@ -1,14 +1,17 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Emotion } from '../shared/emotion';
 import { ArticlesService } from '../services/articles.service';
 import { Article } from '../shared/article';
 import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
+import { opace } from '../animations/app.animations';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css']
+  styleUrls: ['./article.component.css'],
+  animations: [
+    opace()
+  ]
 })
 
 export class ArticleComponent implements OnInit {
@@ -19,8 +22,8 @@ export class ArticleComponent implements OnInit {
   username: string;
   bool: boolean
 
-  constructor(private emotion: Emotion, private articlesService: ArticlesService, private renderer: Renderer2,
-    private authService: AuthService, private userService: UserService) {
+  constructor(private emotion: Emotion, private articlesService: ArticlesService,
+    private authService: AuthService) {
     this.bool=false;
    }
 
@@ -33,9 +36,8 @@ export class ArticleComponent implements OnInit {
       this.bool=true;
     },
     errmess=>this.errMess=<any>errmess);
-    this.authService.getUserId().subscribe(id=>{
-      this.userService.getUserWithId(id).subscribe(user=>this.username=user[0].username),err=>this.errMess="Oops... Something went wrong!"
-    },err=>this.errMess="Oops... Something went wrong!");
+
+      this.username=this.emotion.user.username;
   }
   forward() {
     this.counter = this.counter + 1;

@@ -130,3 +130,17 @@ export function proLikes() {
         ])
     ]);
 }
+export function opace() {
+    return trigger('opace',[
+        state('*',
+        style({opacity:1})),
+        transition(':enter', [style({opacity:0}),animate('800ms ease-in', style({opacity:1}))])
+    ]);
+}
+export function opace2() {
+    return trigger('opace2',[
+        state('*',
+        style({opacity:1})),
+        transition(':enter', [style({opacity:0}),animate('200ms ease-in', style({opacity:1}))])
+    ]);
+}

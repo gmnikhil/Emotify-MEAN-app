@@ -1,6 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { flyInOut,expand,revolve} from '../animations/app.animations';
 import { Emotion } from '../shared/emotion';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 export interface Tile {
   color: string;
@@ -19,21 +21,25 @@ export interface Tile {
 })
 export class STileComponent implements OnInit {
   load: boolean;
-  constructor(private renderer: Renderer2, private emotion: Emotion) {
+  subscription: Subscription;
+
+  constructor(private renderer: Renderer2, private emotion: Emotion, 
+    private authService: AuthService) {
     this.load = false;
   }
 
   ngOnInit(): void {
     this.renderer.setStyle(document.body,'background-color','indigo');
+    this.subscription= this.authService.getUser().subscribe(user=>this.emotion.user=user);
   }
 
   tiles: Tile[] = [
-    {color: 'orange', emotion: 'Happy'},
+    {color: 'violet', emotion: 'Happy'},
     {color: 'grey', emotion:'Sad'},
     {color: 'crimson', emotion:'Nervous'},
     {color: 'lightblue', emotion: 'Love'},
     {color: 'black', emotion: 'Alone'},
-    {color: 'violet', emotion: 'Fear'},
+    {color: 'deeppink', emotion: 'Fear'},
     {color: 'gold', emotion: 'Broken'},
     {color: 'green', emotion: 'Integrity'}
   ];

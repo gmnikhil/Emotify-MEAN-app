@@ -7,7 +7,7 @@
         <span class="username">ಠ‿↼  {{username}}</span>
     </div>
 
-    <div class="css-box" *ngFor="let article of articles">
+    <div class="css-box" *ngFor="let article of articles" [@opace]>
         <mat-card *ngIf="article.id===this.counter">
         <mat-card-header>
            <mat-card-title><h3 style="word-break: break-all; color:wheat; font-weight: bolder;

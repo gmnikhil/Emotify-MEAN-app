@@ -26,18 +26,19 @@ export class CtyPostComponent implements OnInit {
   sub: boolean;
   content: FormControl;
   cats: Cat[] =[
-    {letter:'#H',color:'orange', emotion:'Happy', bg:false},
+    {letter:'#H',color:'violet', emotion:'Happy', bg:false},
     {letter:'#S',color:'grey', emotion:'Sad', bg:false},
     {letter:'#N',color:'crimson', emotion: 'Nervous', bg:false},
     {letter:'#L',color:'lightblue', emotion: 'Love', bg:false},
     {letter:'#A',color:'black', emotion: 'Alone', bg:false},
-    {letter:'#F',color:'violet', emotion: 'Frightened', bg:false},
+    {letter:'#F',color:'deeppink', emotion: 'Frightened', bg:false},
     {letter:'#B',color:'gold', emotion: 'Broken', bg:false},
     {letter:'#I',color:'green', emotion: 'Integrity', bg:false}
   ]
 
   @ViewChild("pform") postFormDirective;
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private emotion: Emotion, private communityService: CommunityService) {
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, 
+    private emotion: Emotion, private communityService: CommunityService) {
     this.createFormControls();
     this.createForm();
     this.sub=false;
@@ -96,6 +97,7 @@ export class CtyPostComponent implements OnInit {
         content:"",
         category:""
       });
+      this.emotion.cPosts=null;
       this.activeModal.close('Close click');
       location.reload();
     },err=>{

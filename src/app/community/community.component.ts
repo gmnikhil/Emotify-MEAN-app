@@ -1,13 +1,13 @@
-import { Component, OnInit, Renderer2, ElementRef} from '@angular/core';
+import { Component, OnInit, Renderer2} from '@angular/core';
 import { CommunityService } from '../services/community.service';
 import { Post } from '../shared/post';
 import { UserService } from '../services/user.service';
 import { User } from '../shared/user';
-import {Emotion } from '../shared/emotion';
+import { Emotion } from '../shared/emotion';
 import { AuthService } from '../services/auth.service';
 import { Cat } from '../cty-post/cty-post.component';
 import { URL } from '../shared/url'; 
-import { community } from '../animations/app.animations';
+import { community, opace2, opace } from '../animations/app.animations';
 
 export interface htmlPost {
     date: string;
@@ -26,7 +26,9 @@ export interface htmlPost {
   templateUrl: './community.component.html',
   styleUrls: ['./community.component.css'],
   animations: [
-    community()
+    community(),
+    opace2(),
+    opace()
   ]
 })
 export class CommunityComponent implements OnInit {
@@ -40,19 +42,19 @@ export class CommunityComponent implements OnInit {
   user: User;
   bool :Boolean = false;
   cats: Cat[] =[
-    {letter:'#H',color:'orange', emotion:'Happy', bg:false},
+    {letter:'#H',color:'violet', emotion:'Happy', bg:false},
     {letter:'#S',color:'grey', emotion:'Sad', bg:false},
     {letter:'#N',color:'crimson', emotion: 'Nervous', bg:false},
     {letter:'#L',color:'lightblue', emotion: 'Love', bg:false},
     {letter:'#A',color:'black', emotion: 'Alone', bg:false},
-    {letter:'#F',color:'violet', emotion: 'Frightened', bg:false},
+    {letter:'#F',color:'deeppink', emotion: 'Frightened', bg:false},
     {letter:'#B',color:'gold', emotion: 'Broken', bg:false},
     {letter:'#I',color:'green', emotion: 'Integrity', bg:false}
   ]
 
   constructor(private communityService: CommunityService, private userService: UserService, 
     private emotion: Emotion, private authService: AuthService,
-    private renderer: Renderer2, private el: ElementRef) {
+    private renderer: Renderer2) {
       this.load=false;
      }
 
@@ -67,54 +69,62 @@ export class CommunityComponent implements OnInit {
           window.clearInterval(scrollToTop);
         }
       }, 16);
-    this.authService.getUserId().subscribe(id=>{
-      this.communityService.getPosts().subscribe((posts) => {
-        this.posts = posts;
-        this.userService.getUsers().subscribe((users)=>{
-          this.users=users;
-          this.userService.getUserWithId(id).subscribe(u=>{
-            this.user=u[0];
-            this.templatePost=[];
-            for(var i=0; i<this.posts.length;i++) {
-              for(var j=0; j<this.users.length;j++) {
-                let post = this.posts[i];
-                let user= this.users[j];
-                let bool = false;
-                let index: number;
-                if(user._id===post.userId) {
-                  for(var k=0;k<this.user.likes.length;k++){
-                    if(this.user.likes[k]._id===post._id) {
-                      index=k;
-                      break;
+      if(this.emotion.cPosts===null) {
+        this.authService.getUserId().subscribe(id=>{
+          this.communityService.getPosts().subscribe((posts) => {
+            this.posts = posts;
+            this.userService.getUsers().subscribe((users)=>{
+              this.users=users;
+              this.userService.getUserWithId(id).subscribe(u=>{
+                this.user=u[0];
+                this.templatePost=[];
+                for(var i=0; i<this.posts.length;i++) {
+                  for(var j=0; j<this.users.length;j++) {
+                    let post = this.posts[i];
+                    let user= this.users[j];
+                    let bool = false;
+                    let index: number;
+                    if(user._id===post.userId) {
+                      for(var k=0;k<this.user.likes.length;k++){
+                        if(this.user.likes[k]._id===post._id) {
+                          index=k;
+                          break;
+                        }
+                      }
+                      if(index>-1)
+                        bool = true;
+                      this.templatePost.push({
+                        date: post.date,
+                        content: post.content,
+                        category: post.category,
+                        userName: user.username,
+                        title: post.title,
+                        userImage: user.userImage,
+                        like: bool,
+                        _id: post._id,
+                        userId: post.userId});
+                        break;
                     }
                   }
-                  if(index>-1)
-                    bool = true;
-                  this.templatePost.push({
-                    date: post.date,
-                    content: post.content,
-                    category: post.category,
-                    userName: user.username,
-                    title: post.title,
-                    userImage: user.userImage,
-                    like: bool,
-                    _id: post._id,
-                    userId: post.userId});
-                    break;
                 }
-              }
-            }
-            this.templatePost.sort(function(a, b) {
-              return (a.date > b.date) ? -1 : ((a.date < b.date) ? 1 : 0);
-          });
-            this.fullPost = this.templatePost;
-            this.load=true;
+                this.templatePost.sort(function(a, b) {
+                  return (a.date > b.date) ? -1 : ((a.date < b.date) ? 1 : 0);
+              });
+                this.fullPost = this.templatePost;
+                this.emotion.cPosts = this.templatePost;
+                this.load=true;
+              },err=>this.errMess="Oops... Something went wrong!");
+            },err=>this.errMess="Oops... Something went wrong!");
           },err=>this.errMess="Oops... Something went wrong!");
-        },err=>this.errMess="Oops... Something went wrong!");
-      },err=>this.errMess="Oops... Something went wrong!");
-
-    },err=>this.errMess="Oops... Something went wrong!");
     
+        },err=>this.errMess="Oops... Something went wrong!");
+      }
+    else {
+      this.authService.getUser().subscribe(user=>this.user=user);
+      this.templatePost = this.emotion.cPosts;
+      this.fullPost = this.emotion.cPosts;
+      this.load = true;
+    }
   }
 
   catClick(emo :string) {
@@ -174,6 +184,7 @@ export class CommunityComponent implements OnInit {
     this.userService.editUser(tuser).subscribe(resp=>{
         this.user = tuser;
         this.templatePost[tindex].like=!this.templatePost[tindex].like;
+        this.emotion.cPosts=this.templatePost;
       },err=>{
         alert("Couldnt be liked!");
       });

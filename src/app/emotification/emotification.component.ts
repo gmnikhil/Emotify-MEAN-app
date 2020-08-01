@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Emotion } from '../shared/emotion';
@@ -25,12 +24,9 @@ export class EmotificationComponent implements OnInit {
   ];
   subscription: Subscription;
 
-  constructor(private router: Router, private authService: AuthService,
-    private emotion: Emotion) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.authService.loadUserCredentials();
-    this.subscription=this.authService.getUserId().subscribe(_id=>{this.emotion.userId=_id});
   }
 
 getDivStyle() {

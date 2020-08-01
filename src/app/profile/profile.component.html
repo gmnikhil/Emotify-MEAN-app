@@ -2,7 +2,7 @@
    <mat-spinner *ngIf="!errMess"></mat-spinner> <p>Loading...</p>
 <p *ngIf="errMess" style="font-size: large; margin-top: 50px; padding-left: 20px;">{{errMess}}</p>
 </div>
-<app-emotification *ngIf="user"></app-emotification>
+<app-emotification *ngIf="user" [@opace2]></app-emotification>
 <div class="encaps" *ngIf="user">
    <div class="user-css"
    fxLayout="row"
@@ -53,7 +53,7 @@
       <mat-card *ngFor="let post of likedPosts; let i = index">
       <mat-card-header>
          <mat-card-title><h4 style="word-break: break-all;">{{post.userName}}</h4></mat-card-title>
-         <img mat-card-avatar [src]="url+user.userImage.split('uploads/')[1]">
+         <img mat-card-avatar [src]="url+post.userImage.split('uploads/')[1]">
          <mat-card-subtitle style="font-size: larger; color:wheat;">{{post.category | lowercase}}</mat-card-subtitle>
       </mat-card-header>
       <span style="float:right; font-size: x-small; word-break: break-all; text-align: right;

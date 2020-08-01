@@ -6,8 +6,7 @@ import{ UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Emotion } from '../shared/emotion';
-import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -31,7 +30,7 @@ export class SignupComponent implements OnInit {
   @ViewChild('userPhoto') userPhoto: ElementRef;
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal,
     private authService: AuthService, private userService: UserService, private router: Router,
-    private emotion: Emotion, private http: HttpClient) {
+    private emotion: Emotion) {
     this.createFormControls();
     this.createForm();
     this.bool=false;
@@ -122,7 +121,7 @@ export class SignupComponent implements OnInit {
     if(user.success) {
       this.userService.getUserWithUsername(this.passForm.value.username).subscribe(usr=>{
         this.emotion.userId = usr[0]._id;
-        this.authService.storeUserCredentials({_id:this.emotion.userId, token:user.token});
+        this.authService.storeUserCredentials({_id:this.emotion.userId, token:user.token, user: usr[0]});
         this.router.navigate(['ehome']);
         this.activeModal.close('Close click');
       },err=>{

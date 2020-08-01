@@ -10,8 +10,8 @@ import { CtyPostComponent } from '../cty-post/cty-post.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
 import { htmlPost } from '../community/community.component';
 import { URL } from '../shared/url';
-import { profile, proPosts, proLikes } from '../animations/app.animations';
-import { Router } from '@angular/router';
+import { profile, proPosts, proLikes, opace2 } from '../animations/app.animations';
+
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +20,8 @@ import { Router } from '@angular/router';
   animations: [
     profile(),
     proPosts(),
-    proLikes()
+    proLikes(),
+    opace2()
   ]
 })
 export class ProfileComponent implements OnInit {
@@ -37,7 +38,7 @@ url :string = URL;
 errMess: string;
   constructor(private communityService: CommunityService, private userService: UserService, 
     private emotion: Emotion, private renderer: Renderer2, 
-    private modalService: NgbModal, private authService: AuthService, private router: Router) { 
+    private modalService: NgbModal, private authService: AuthService) { 
       this.load1=false;
       this.load2=false;
     }
@@ -53,9 +54,9 @@ errMess: string;
           window.clearInterval(scrollToTop);
         }
       }, 16);
-    this.authService.getUserId().subscribe(id=>{
-      this.userService.getUserWithId(id).subscribe(u=>{
-        this.user = u[0];
+    this.authService.getUser().subscribe(u=>{
+        this.user = u;
+        this.emotion.user = u; 
         this.communityService.getUsersPosts(this.user._id).subscribe(posts=>{
           this.posts = posts;
           this.PostsInit();
@@ -66,7 +67,7 @@ errMess: string;
           this.likeInit();
           this.load2=true;
         },err=>this.errMess="Oops... Something went wrong!");
-      },err=>this.errMess="Oops... Something went wrong!");
+      
     },err=>this.errMess="Oops... Something went wrong!");
   }
   PostsInit() {
@@ -138,21 +139,20 @@ errMess: string;
         return el != null;
       });
       this.user=tuser;
+      this.emotion.cPosts=null;
       this.likeInit();
     },err=>alert('couldnt be deleted'));
-    //add delete to community service
-    //then from this.userPosts find the post and delete and filter
   }
   getPostStyle() {
     if(this.bool===true) {
       this.bool=!this.bool; 
-      this.ngOnInit();
+      //////////this.ngOnInit();
     }
   }
   getLikeStyle() {
     if(this.bool===false) {
       this.bool=!this.bool;
-      this.ngOnInit();
+      /////////////////this.ngOnInit();
     }
   }
   likeOfLikes(post: htmlPost,index:number) {
@@ -180,6 +180,7 @@ errMess: string;
         this.user = tuser;
         this.likedPosts[index].like=!this.likedPosts[index].like;
         this.likeInit();
+        this.emotion.cPosts=null;
       },err=>{
         alert("Oops.. Something went wrong!");
     });
@@ -213,6 +214,7 @@ errMess: string;
         this.user = tuser;
         this.userPosts[tindex].like=!this.userPosts[tindex].like;
         this.likeInit();
+        this.emotion.cPosts=null;
       },err=>{
         alert("Couldnt be liked!");
     });

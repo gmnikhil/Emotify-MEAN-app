@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
-import {Emotion} from '../shared/emotion';
 import { AuthService } from '../services/auth.service';
 
 export interface loguser {
@@ -21,8 +18,7 @@ export class LoginComponent implements OnInit {
   user: loguser = {username:"",password:""};
   errMess: string;
   bool :boolean
-  constructor(public activeModal: NgbActiveModal, private userService: UserService, 
-    private router: Router, private emotion: Emotion, private authService: AuthService) { 
+  constructor(public activeModal: NgbActiveModal, private authService: AuthService) { 
       this.bool=true;
     }
 
