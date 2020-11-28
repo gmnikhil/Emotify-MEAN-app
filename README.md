@@ -1,18 +1,15 @@
 # Emotify
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
 
-##
 Emotify is a peace platform developed for its users to achieve a better emotional state.
-It is made by using angular for front end and express,nodejs for server. Database used is mongodb atlas.
 
-##
-git clone `https://github.com/Nikcodes10/Emotify-MEAN-app.git`
+## Framework
 
-##
-run `npm install' to install the necessary node modules
+- Emotify is made by using 'Angular' for frontend
+- The backend comprises of a server made from `node.js` and `express.js`
+- It uses `mongoDB Atlas` database for storing data.
 
-##
-run `ng serve' for development build
+# Running Locally
 
-##
-use the contents in the dist folder to run production build with an external server
+You can view the frontend part by: 
+
+cloning the repo -> cd into it -> run `ng serve` 
