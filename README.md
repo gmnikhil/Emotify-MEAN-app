@@ -1,4 +1,4 @@
-# Emotify
+# <img src="https://github.com/Nikcodes10/Emotify-MEAN-app/blob/master/assets/favicon.jpg?raw=true" height=35>Emotify
 
 Emotify is a peace platform developed for its users to achieve a better emotional state.
 
@@ -8,8 +8,8 @@ Emotify is a peace platform developed for its users to achieve a better emotiona
 - The backend comprises of a server made from `node.js` and `express.js`
 - It uses `mongoDB Atlas` database for storing data.
 
-# Running Locally
+## Run Locally
 
-You can view the frontend part by: 
+You can run the frontend part locally by: 
 
 cloning the repo -> cd into it -> run `ng serve` 
